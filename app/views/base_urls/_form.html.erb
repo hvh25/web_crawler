@@ -1,0 +1,65 @@
+<%= form_for(@base_url) do |f| %>
+  <% if @base_url.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@base_url.errors.count, "error") %> prohibited this base_url from being saved:</h2>
+
+      <ul>
+      <% @base_url.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :page_url %><br />
+    <%= f.text_field :page_url %>
+  </div>
+  <div class="field">
+    <%= f.label :common_url %><br />
+    <%= f.text_field :common_url %>
+  </div>
+  <div class="field">
+    <%= f.label :base %><br />
+    <%= f.text_field :base %>
+  </div>
+  <div class="field">
+    <%= f.label :sourcetype %><br />
+    <%= f.select :sourcetype, ['','job_by_row'] %>
+  </div>
+   <div class="field">
+    <%= f.label :titlecss %><br />
+    <%= f.text_field :titlecss %>
+  </div>
+  <div class="field">
+    <%= f.label :jobrowcss %><br />
+    <%= f.text_field :jobrowcss %>
+  </div>
+  <div class="field">
+    <%= f.label :companycss %><%= f.text_field :companycss %> or 
+    <%= f.label :company0 %><%= f.text_field :company0 %>
+  </div>
+  <div class="field">
+    <%= f.label :locationcss %><%= f.text_field :locationcss %> or 
+    <%= f.label :location0 %><%= f.text_field :location0 %>
+  </div>
+  <div class="field">
+    <%= f.label :descriptioncss %><%= f.text_field :descriptioncss %> or 
+    <%= f.label :description0 %><%= f.text_field :description0 %>
+  </div>
+  <div class="field">
+    <%= f.label :requirementcss %><%= f.text_field :requirementcss %> or 
+    <%= f.label :requirement0 %><%= f.text_field :requirement0 %>
+  </div>
+  <div class="field">
+    <%= f.label :availabilitycss %><br />
+    <%= f.text_field :availabilitycss %>
+  </div>
+  <div class="field">
+    <%= f.label :jobtypecss %><%= f.text_field :jobtypecss %> or 
+    <%= f.label :jobtype0 %><%= f.text_field :jobtype0 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

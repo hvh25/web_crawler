@@ -1,0 +1,86 @@
+<div class="container-fluid">  
+    <div class="row-fluid">  
+        <div class="span2"></div>
+        <div class="span8">
+
+          <%- model_class = Job.new.class -%>
+          <h1>JIB THESE JUNIOR JOBS IN VIETNAM</h1>
+
+          <!----------------- SEARCH FORM: ---------------->
+          <%= form_tag jobs_path, :method => :get do %>
+            <%= text_field_tag :query, params[:query] %>
+            <%= submit_tag "Jib!", :name => nil %>
+          <% end %>
+        </div><!--span9-->
+        
+        <!------- RIGHT COLUMN ------>
+        <div class="span2"><%= link_to t('.new', :default => t("helpers.links.new")),
+                    new_job_path, :class => 'btn btn-primary' %>
+                    <%= button_to 'Get Links', :actions => 'get_all_links'%>
+
+        </div>             
+    </div><!--end of search box row-->      
+
+
+    <!-- ------------------SEARCH RESULTS: ------------------>
+    <div class="row-fluid">
+        <div class="span2">
+            <div id="facets">
+                <h3>Job Type</h3>
+                <ul>
+                  <% for row in @search.facet(:jobtype).rows %>
+                    <li>
+                      <% if params[:jobtype].blank? %>
+                        <%= link_to row.value, params.merge(:jobtype => row.value) %> (<%= row.count %>)
+                      <% else %>
+                        <strong><%= row.value %></strong> (<%= link_to "remove", :jobtype => nil %>)
+                      <% end %>
+                    </li>
+                  <% end %><!--end of for row in @search-->
+                </ul>
+            </div>
+        </div><!--end of facets/span2-->
+
+        <div class='span8'><!--search results class-->
+            <% if @jobs == [] %> try again
+            <% elsif @jobs.any? %>
+                <h2>Search Results</h2>
+                <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+
+            <!----------JOB TABLE---------------->
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th><%= model_class.human_attribute_name(:title) %></th>
+                  <th><%= model_class.human_attribute_name(:company) %></th>
+                  <th><%= model_class.human_attribute_name(:availability) %></th>
+                  <th><%= model_class.human_attribute_name(:location) %></th>
+                  <th><%= model_class.human_attribute_name(:jobtype) %></th>
+                  <th><%=t '.actions', :default => t("helpers.actions") %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @jobs.each do |job| %>
+                  <tr>
+                    <td><%= link_to job.title, job, :target => "_blank" %></td>
+                    <td><%= job.company %></td>
+                    <td><%= job.availability %></td>
+                    <td><%= job.location %></td>
+                    <td><%= job.jobtype %></td>
+                    <td>
+                      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                                  edit_job_path(job), :class => 'btn btn-mini' %>
+                      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                  job_path(job),
+                                  :method => :delete,
+                                  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                                  :class => 'btn btn-mini btn-danger' %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table><!-- end of search results table -->
+
+            <!----PAGINATE -------->
+                <%= will_paginate @jobs %>
+            <% end %>

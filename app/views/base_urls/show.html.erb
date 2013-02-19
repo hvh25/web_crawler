@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Page url:</b>
+  <%= @base_url.page_url %>
+</p>
+
+<p>
+  <b>Common url:</b>
+  <%= @base_url.common_url %>
+</p>
+
+<p>
+  <b>Base:</b>
+  <%= @base_url.base %>
+</p>
+
+
+<%= link_to 'Edit', edit_base_url_path(@base_url) %> |
+<%= link_to 'Back', base_urls_path %>

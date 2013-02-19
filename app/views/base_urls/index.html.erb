@@ -1,0 +1,27 @@
+<h1>Listing base_urls</h1>
+
+<table>
+  <tr>
+    <th>Page url</th>
+    <th>Common url</th>
+    <th>Base</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @base_urls.each do |base_url| %>
+  <tr>
+    <td><%= base_url.page_url %></td>
+    <td><%= base_url.common_url %></td>
+    <td><%= base_url.base %></td>
+    <td><%= link_to 'Show', base_url %></td>
+    <td><%= link_to 'Edit', edit_base_url_path(base_url) %></td>
+    <td><%= link_to 'Destroy', base_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Base url', new_base_url_path %>

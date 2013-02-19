@@ -1,0 +1,51 @@
+<%- model_class = @job.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human %></h1>
+
+<p>
+  <strong><%= model_class.human_attribute_name(:url) %>:</strong><br>
+  <%= @job.url %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:description) %>:</strong><br>
+  <%= @job.description %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:company) %>:</strong><br>
+  <%= @job.company %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:availability) %>:</strong><br>
+  <%= @job.availability %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:title) %>:</strong><br>
+  <%= @job.title %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:word_id) %>:</strong><br>
+  <%= @job.word_id %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:location) %>:</strong><br>
+  <%= @job.location %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:requirement) %>:</strong><br>
+  <%= @job.requirement %>
+</p>
+<p>
+  <strong><%= model_class.human_attribute_name(:jobtype) %>:</strong><br>
+  <%= @job.jobtype %>
+</p>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              jobs_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_job_path(@job), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              job_path(@job),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

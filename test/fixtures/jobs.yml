@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url: MyString
+  description: MyString
+  company: MyString
+  availability: 2013-01-19
+  title: MyString
+
+two:
+  url: MyString
+  description: MyString
+  company: MyString
+  availability: 2013-01-19
+  title: MyString
