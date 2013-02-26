@@ -3,14 +3,17 @@ require 'will_paginate/array'
 class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
+  filter_resource_access
+
   def index
    # @jobs = Job.all
 
    @search = Job.search do
       keywords params[:query]
       paginate(:per_page => 20, :page => params[:page])
-      facet(:jobtype)
-    with(:jobtype, params[:jobtype]) if params[:jobtype].present?
+      facet(:jobtype, :location)
+      with(:jobtype, params[:jobtype]) if params[:jobtype].present?
+      with(:location, params[:location]) if params[:location].present?
     end
     @jobs = @search.results
  
@@ -19,14 +22,6 @@ class JobsController < ApplicationController
       format.json { render json: @jobs }
     end
   end
-
-  def get_all_links
-    #@job = Job.find(params[:id])
-    #@job.delay.get_all_links
-      get_all_links
-      puts 'Hello get_all_link_HAHAHA'
-      redirect_to jobs_url, notice: "Success get all links"
-    end
 
 
 =begin
@@ -71,8 +66,8 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(params[:job])
-
+    @job.user = current_user
+    
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }

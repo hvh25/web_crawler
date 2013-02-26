@@ -17,6 +17,7 @@ gem 'will_paginate'
 
 gem 'simple_form'
 gem 'devise'
+gem 'omniauth-facebook'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,6 +36,8 @@ end
 
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
+gem "declarative_authorization"
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

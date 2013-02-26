@@ -1,6 +1,6 @@
 <div class="container-fluid">  
     <div class="row-fluid">  
-        <div class="span2"></div>
+        <div class="span2">1</div>
         <div class="span8">
 
           <%- model_class = Job.new.class -%>
@@ -19,7 +19,7 @@
                     <%= button_to 'Get Links', :actions => 'get_all_links'%>
 
         </div>             
-    </div><!--end of search box row-->      
+    </div><!--end of search box 8-->    
 
 
     <!-- ------------------SEARCH RESULTS: ------------------>
@@ -33,7 +33,7 @@
                       <% if params[:jobtype].blank? %>
                         <%= link_to row.value, params.merge(:jobtype => row.value) %> (<%= row.count %>)
                       <% else %>
-                        <strong><%= row.value %></strong> (<%= link_to "remove", :jobtype => nil %>)
+                        <strong><%= row.value %></strong> (<%= link_to "remove", params.merge(:jobtype => nil) %>)
                       <% end %>
                     </li>
                   <% end %><!--end of for row in @search-->
@@ -42,10 +42,8 @@
         </div><!--end of facets/span2-->
 
         <div class='span8'><!--search results class-->
-            <% if @jobs == [] %> try again
-            <% elsif @jobs.any? %>
+
                 <h2>Search Results</h2>
-                <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 
             <!----------JOB TABLE---------------->
             <table class="table table-striped">
@@ -80,7 +78,9 @@
                 <% end %>
               </tbody>
             </table><!-- end of search results table -->
-
             <!----PAGINATE -------->
-                <%= will_paginate @jobs %>
-            <% end %>
+            <%= will_paginate @jobs %>
+
+        </div><!-- end of search results 8 class -->    
+    </div><!-- end of search results 12 class -->
+</div><!--end of all-->   

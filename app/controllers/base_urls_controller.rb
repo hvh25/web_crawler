@@ -1,6 +1,8 @@
 class BaseUrlsController < ApplicationController
   # GET /base_urls
   # GET /base_urls.json
+  filter_resource_access
+
   def index
     @base_urls = BaseUrl.all
 
@@ -46,10 +48,7 @@ class BaseUrlsController < ApplicationController
     respond_to do |format|
       if @base_url.save
         format.html { redirect_to @base_url, notice: 'Base url was successfully created.' }
-        format.json { render json: @base_url, status: :created, location: @base_url }
-
-        @base_url.get_all_links
-      
+        format.json { render json: @base_url, status: :created, location: @base_url }      
       else
         format.html { render action: "new" }
         format.json { render json: @base_url.errors, status: :unprocessable_entity }

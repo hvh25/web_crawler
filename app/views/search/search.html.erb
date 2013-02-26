@@ -1,10 +1,12 @@
 <div class="container-fluid">  
     <div class="row-fluid">  
-        <div class="span2"></div>
+        <div class="span2">1</div>
         <div class="span8">
 
           <%- model_class = Job.new.class -%>
-          <h1>JIB THESE JUNIOR JOBS IN VIETNAM</h1>
+          <h2>Let's JIB these junior jobs in Vietnam!</h2>
+          <br>
+          <br>
 
           <!----------------- SEARCH FORM: ---------------->
           <%= form_tag search_path, :method => :get do %>
@@ -17,8 +19,8 @@
 
     <!-- ------------------SEARCH RESULTS: ------------------>
     <div class="row-fluid">
-            <%if @result == [1]%> <div class="span2"></div>WELCOME TO JIB.VN
-      <%elsif @result == [] %><div class="span2"></div> TRY AGAIN WITH ONE KEYWORD
+            <%if @result == [1]%> <div class="span2">" "</div>WELCOME TO JIB.VN
+      <%elsif @result == [] %><div class="span2">1</div> TRY AGAIN WITH ONE KEYWORD
       <% elsif @result.any? %>
         <div class="span2">
             <div id="facets">
@@ -29,7 +31,20 @@
                       <% if params[:jobtype].blank? %>
                         <%= link_to row.value, params.merge(:jobtype => row.value) %> (<%= row.count %>)
                       <% else %>
-                        <strong><%= row.value %></strong> (<%= link_to "remove", :jobtype => nil %>)
+                        <strong><%= row.value %></strong> (<%= link_to "remove", params.merge(:jobtype => nil) %>)
+                      <% end %>
+                    </li>
+                  <% end %><!--end of for row in @search-->
+                </ul>
+
+                <h3>Location</h3>
+                <ul>
+                  <% for row in @search.facet(:location).rows %>
+                    <li>
+                      <% if params[:location].blank? %>
+                        <%= link_to row.value, params.merge(:location => row.value) %> (<%= row.count %>)
+                      <% else %>
+                        <strong><%= row.value %></strong> (<%= link_to "remove", params.merge(:location => nil) %>)
                       <% end %>
                     </li>
                   <% end %><!--end of for row in @search-->
@@ -39,7 +54,7 @@
 
         <div class='span8'><!--search results class-->
 
-          <h2><%= @search.total %> jobs found for your search</h2>
+          <h3><%= @search.total %> jobs found for your search</h3>
           
             <!----------JOB TABLE---------------->
             <table class="table table-striped">
@@ -49,7 +64,6 @@
                   <th><%= model_class.human_attribute_name(:company) %></th>
                   <th><%= model_class.human_attribute_name(:availability) %></th>
                   <th><%= model_class.human_attribute_name(:location) %></th>
-                  <th><%= model_class.human_attribute_name(:jobtype) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -59,11 +73,13 @@
                     <td><%= job.company %></td>
                     <td><%= job.availability %></td>
                     <td><%= job.location %></td>
-                    <td><%= job.jobtype %></td>
                   </tr>
                 <% end %><!--- END OF RESULTS LIST------>
               </tbody>
             </table><!-- end of search results table -->
+            <!----PAGINATE -------->
+                <%= will_paginate @result %>
+                <% end %>
         </div>    
             <!------- RIGHT COLUMN ------>
         <div class="span2"><%= link_to t('.new', :default => t("helpers.links.new")),
@@ -72,6 +88,4 @@
     </div> 
 </div>
 
-            <!----PAGINATE -------->
-                <%= will_paginate @result %>
-            <% end %>
+            

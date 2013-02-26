@@ -4,14 +4,12 @@
   <%= f.input :company %>
   <%= f.input :availability %>
   <%= f.input :title %>
-  <%= f.input :word_id %>
   <%= f.input :location %>
   <%= f.input :requirement %>
   <%= f.input :jobtype %>
-  <%= f.input :sourcetype %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                jobs_path, :class => 'btn' %>
+                search_path, :class => 'btn' %>
   </div>
 <% end %>

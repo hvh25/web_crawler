@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218225947) do
+ActiveRecord::Schema.define(:version => 20130222212230) do
+
+  create_table "assignments", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "user_id"
+    t.string   "role_id"
+  end
 
   create_table "base_urls", :force => true do |t|
     t.string   "page_url"
@@ -33,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130218225947) do
     t.string   "description0"
     t.string   "requirement0"
     t.string   "jobtype0"
+    t.integer  "avail0"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -71,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20130218225947) do
     t.string   "requirementcss"
     t.string   "availabilitycss"
     t.string   "jobtypecss"
+    t.integer  "user_id"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -86,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20130218225947) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

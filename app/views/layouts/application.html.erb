@@ -20,37 +20,30 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </a>
-	      <a class="brand" href="#">JIB.VN</a>
+	      <a class="brand">Jib.vn</a>
 	      <div class="nav-collapse">
 	        <ul class="nav">
-	          <li><%= link_to "Jib a Job!", jobs_path %></li>
+	          <li><%= link_to "Jib a Job!", search_path %></li>
 	          <li><%= link_to "Career Blog" %></li>
 	          <li><%= link_to "Contact Us" %></li>
 	          <li><%= link_to "About us" %></li>
 	        </ul>
 	      </div>
+	      
+	      <div class = "pull-right">
+	      	<% if user_signed_in? %>
+			    Logged in as <strong><%= current_user.email %></strong>.
+				<%= link_to 'Edit profile', edit_user_registration_path %> |
+				<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+			<% else %>
+				<%= link_to "Sign up", new_user_registration_path %> |
+			    <%= link_to "Login", new_user_session_path %> |
+			    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+			<% end %>
+	      </div>	
 	    </div>
 	  </div>
 	</div>
-
-	<div class="container-fluid">  
-    	<div class="row-fluid">  
-	        <div class="span2"></div>
-	        <div class="span8"></div>
-	        <div class="span2">
-	        	<div id="container">
-					  <div id="user_nav">
-					    <% if user_signed_in? %>
-					      Logged in as <strong><%= current_user.email %></strong>.
-					      <%= link_to 'Edit profile', edit_user_registration_path %> |
-					      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-					    <% else %>
-					      <%= link_to "Sign up", new_user_registration_path %> |
-					      <%= link_to "Login", new_user_session_path %>
-					    <% end %>
-  					   </div>
-  				</div>
-  			</div>
 	
 
 	<% flash.each do |name, msg| %>

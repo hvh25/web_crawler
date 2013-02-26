@@ -10,7 +10,7 @@ new_list = []
 class BaseUrl < ActiveRecord::Base
   attr_accessible :base, :common_url, :page_url, :sourcetype, :titlecss,
                   :jobrowcss, :companycss, :locationcss, :descriptioncss, :requirementcss, :availabilitycss, :jobtypecss,
-                  :company0, :location0, :description0, :requirement0, :jobtype0
+                  :company0, :location0, :description0, :requirement0, :jobtype0, :avail0
   
   has_many :jobs
 

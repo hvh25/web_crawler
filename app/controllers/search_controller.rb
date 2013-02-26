@@ -6,9 +6,10 @@ class SearchController < ApplicationController
     else
       @search = Job.search do
       keywords params[:query]
-      paginate(:per_page => 20, :page => params[:page])
-      facet(:jobtype) 
+      paginate(:per_page => 15, :page => params[:page])
+      facet(:jobtype, :location) 
       with(:jobtype, params[:jobtype]) if params[:jobtype].present?
+      with(:location, params[:location]) if params[:location].present?
       end
       @result = @search.results
 	end
