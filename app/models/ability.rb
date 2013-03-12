@@ -9,7 +9,8 @@ class Ability
 	      can :manage, :all
 	    else     
 	      if user.role_ids == [3]
-	        can :read, :create, Job
+	        can :read, Job
+	        can :create, Job
 	        can :create, Jobapp
 	        can :update, Job do |job|
 	          job.try(:user) == user

@@ -27,8 +27,9 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.firstname = auth.first_name
-      user.lastname = auth.last_name
+      user.firstname = auth.info.first_name
+      user.lastname = auth.info.last_name
+      user.save!
     end
   end
 
