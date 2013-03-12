@@ -109,7 +109,7 @@ end
     new_list = []  #a list of all current links
     Job.all.each do |job| old_list << job.url end
 
-  	BaseUrl.all.each do |base_url| if base_url.page_url == 'http://www.vietnamworks.com/new-grad-entry-level-internship-in-ho-chi-minh-l1v29-en/50-jobs-per-page'
+  	BaseUrl.all.each do |base_url| #if base_url.page_url == 'http://www.vietnamworks.com/new-grad-entry-level-internship-in-ho-chi-minh-l1v29-en/50-jobs-per-page'
      puts base_url.page_url
 
     if base_url.sourcetype == 'job_by_row'
@@ -185,7 +185,7 @@ end
           end #of if manager_words 
         end #of if not old_list.include?(job_url)
       end #of new_links.each do |new_link|
-    end # if page_url ==
+    #end # if page_url ==
     end #of if sourcetype == 
   	end #of BaseUrl.all.each do |base_url|
     puts old_list - new_list
