@@ -1,7 +1,7 @@
 class BaseUrlsController < ApplicationController
   # GET /base_urls
   # GET /base_urls.json
-  filter_resource_access
+  load_and_authorize_resource
 
   def index
     @base_urls = BaseUrl.all

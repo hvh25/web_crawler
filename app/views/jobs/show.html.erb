@@ -1,10 +1,25 @@
 <div class="container-fluid">  
     <div class="row-fluid">  
-        <div class="span2">.</div>
-        <div class="span8">
+        <div class="span2" style ="padding-top:100px;position:fixed;">
+          
+          <strong>Similar jobs</strong><br><br>
+          <% if not @job.base_url.nil? %>
+            <% @job.base_url.jobs.each do |job| %>
+            <%= link_to job.title, job, :target => "_blank"  %><br>
+            <% end %>       
+          <% elsif not @job.user.nil? %>
+            <% @job.user.jobs.each do |job| %>
+              <%= link_to job.title, job, :target => "_blank"  %><br>
+            <% end %>
+          <% end %>
+        </div>
+        
+        <div class="span8" style = "padding-left:200px;">
           <%- model_class = @job.class -%>
               <h2><%= @job.title %> </h2>
               <h3><%= @job.company %> - <%= @job.location %></h3>
+              <div id="fb-root"></div>
+                  <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande"></div>
               <br>
               <br>
               <p>
@@ -15,29 +30,23 @@
                 <strong><%= model_class.human_attribute_name(:requirement) %>:</strong><br>
                 <%= h(@job.requirement).gsub(/\n/, '<br/>').html_safe %> 
               </p>
-              <p>
-                <strong><%= model_class.human_attribute_name(:availability) %>:</strong><br>
-                <%= @job.availability %>
-              </p>
-              <p>
-                <strong><%= model_class.human_attribute_name(:jobtype) %>:</strong><br>
-                <%= @job.jobtype %>
-              </p>
-              <%= link_to 'Apply Now',@job.url %>
+
+              <% if @job.url != nil%> <!--&& @job.url.include?('internship.edu.vn') == false ---->
+              <%= link_to 'Apply Now',@job.url, :class => 'btn' %> <!--- redirect to job source ----><% end %>
+              <% if @job.url == nil %>
+              <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %></p><% end %>
+              
               <div class="form-actions">
-                <!---<%= link_to t('.back', :default => t("helpers.links.back")),
-                            jobs_path, :class => 'btn'  %>---->
-                <% permitted_to? :edit do %>
-                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                            edit_job_path(@job), :class => 'btn' %>
-                <% end %> <!--- if permitted to ---->
-                <% permitted_to? :destroy do %>
+                <% if can? :edit, @job %>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(@job), :class => 'btn' %>
+                <% end %>
+                <% if can? :destroy, @job %>
                   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                             job_path(@job),
                             :method => 'delete',
                             :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                             :class => 'btn btn-danger' %>
-                <% end %> <!--- if permitted to ---->            
+                <% end %> <!--- if permitted to -->            
               </div>
         </div>
     </div>

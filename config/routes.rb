@@ -8,8 +8,12 @@ WebCrawler::Application.routes.draw do
 
   resources :words
 
-  resources :jobs
+  resources :jobs do#, :path => '' do
+    resources :jobapps, :shallow => true#,:path => ''
+  end
 
+  resources :jobapps, :only => [:index]
+  
   resources :base_urls
 
   resources :users

@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
 
   after_initialize :default_values
+  validates_presence_of :firstname, :lastname, :email, :password
 
-  has_many :jobs
+  has_many :jobs#, as: :source
+  has_many :jobapps
   has_many :assignments
   has_many :roles, :through => :assignments	
   # Include default devise modules. Others available are:
@@ -12,7 +14,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :lastname, :firstname
   # attr_accessible :title, :body
 
 	def role_symbols #for user roles
@@ -25,6 +27,8 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
+      user.firstname = auth.first_name
+      user.lastname = auth.last_name
     end
   end
 

@@ -9,9 +9,9 @@ module JobsHelper
 end
 
   def self.extract_location(location)  #extract location from website
-    if ['hanoi', 'ha noi'].any?{|w| location.text.downcase[w]} 
+    if ['hanoi', 'ha noi','hn','ha-noi'].any?{|w| location.downcase[w]} 
       return 'Hanoi'
-    elsif ['tp.hcm','tphcm','tp hcm','hcm', 'hcmc', 'saigon', 'sai gon', 'ho chi minh', 'ho chi minh city', 'hochiminh', 'hochiminh city'].any?{|w| location.text.downcase[w]} 
+    elsif ['sai-gon','ho-chi-minh','hcm','saigon', 'sai gon', 'ho chi minh','hochiminh'].any?{|w| location.downcase[w]} 
       return 'HCMC'
     else
       return 'Other'
@@ -19,7 +19,7 @@ end
   end
 
   def self.extract_type(type)  #extract job type from website
-    if ['internship','parttime', 'part-time','part time','interns'].any?{|w| type.text.downcase[w]}
+    if ['thuc-tap','thuctap','intern-','internship','parttime', 'part-time','part time','interns'].any?{|w| type.downcase[w]}
       return 'Internship/Part-time' 
     else
       return 'Junior'
@@ -86,11 +86,11 @@ end
                     jobrow = subpage    #in order to create jobs, fix to fit with company & location
 			            job = Job.create(:url => job_url, :title => subpage.css(base_url.titlecss).text,
 			            :company => base_url.company0 = ''? jobrow.css(base_url.companycss).text : company0,
-			            :location => base_url.location0 = ''? extract_location(jobrow.css(locationcss).text) : base_url.location0,
+			            :location => base_url.location0 = ''? extract_location(jobrow.css(locationcss).text+new_link) : base_url.location0,
 			            :description => base_url.description0 = ''? subpage.css(base_url.descriptioncss).text : base_url.description0,
 			            :requirement => base_url.requirement0 = ''? subpage.css(base_url.requirementcss).text : base_url.requirement0,
 			            :availability => page.css(availabilitycss).text,
-    :jobtype => base_url.jobtype0 = ''? extract_type(subpage.css(jobtypecss).text) : base_url.jobtype0 )
+    :jobtype => base_url.jobtype0 = ''? extract_type(subpage.css(jobtypecss).text+new_link) : base_url.jobtype0 )
 			      #end
 			  }
       #end 
@@ -109,7 +109,7 @@ end
     new_list = []  #a list of all current links
     Job.all.each do |job| old_list << job.url end
 
-  	BaseUrl.all.each do |base_url| if base_url.page_url == 'http://internship.edu.vn/tpjobs.html?option=com_tpjobs&task=simplesearch&keyword=&id_job_spec=0&id_city=22&x=73&y=8'
+  	BaseUrl.all.each do |base_url| if base_url.page_url == 'http://www.vietnamworks.com/new-grad-entry-level-internship-in-ho-chi-minh-l1v29-en/50-jobs-per-page'
      puts base_url.page_url
 
     if base_url.sourcetype == 'job_by_row'
@@ -118,6 +118,7 @@ end
       new_link = jobrow.css("a").select{|link| link['href'].to_s.include? (base_url.common_url)}
       new_link = base_url.base+new_link[0]['href']
         new_list << new_link    #for comparison purpose later
+        
         if not old_list.include?(new_link)   #index only new jobs
           puts new_link
           manager_words = ['manager', 'president','senior','executive','giam-doc','giamdoc']
@@ -125,13 +126,15 @@ end
           begin
             if subpage = Nokogiri::HTML(open(new_link))
 
-                  job = base_url.jobs.create(:url => new_link, :title => jobrow.css(base_url.titlecss).text,
-                      :company => base_url.companycss == ''? base_url.company0 : jobrow.css(base_url.companycss).text,
-                      :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss)),
-                      :description => subpage.css(base_url.descriptioncss).text,
-                      :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
-                      :availability => base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\-)(\d+)(\-)(\d+)/).join(''),
-                      :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss)) )    
+                  job = Job.create(:url => new_link, :title => jobrow.css(base_url.titlecss).text,
+                       :company => base_url.companycss == ''? base_url.company0 : jobrow.css(base_url.companycss).text,
+                       :comptype => base_url.comptype, :base_url_id => base_url.id,
+                       :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss).text),
+                       :description => subpage.css(base_url.descriptioncss).text,
+                       :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
+                   #   :availability => base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\-)(\d+)(\-)(\d+)/).join(''),
+                       :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss).text) )    
+                  #    base_url.jobs << job
             end #of if subpage
 
             rescue Exception => e
@@ -153,20 +156,22 @@ end
   		new_links.uniq.each do |new_link|
   			new_link = base_url.base + fix_url(new_link['href'])
     
-        if not (old_list.include?(new_link) || new_list.include?(new_link))  #index only new jobs
-          new_list << new_link
+        new_list << new_link
+        if not (old_list.include?(new_link) || new_list.include?(new_link))  #index only new jobs        
           puts new_link
           manager_words = ['manager', 'president','senior','executive','giam-doc','giamdoc']
           if manager_words.any?{|w| new_link.downcase[w]} == false #remove manager jobs
           begin
       			if subpage = Nokogiri::HTML(open(new_link))
-        			    job = base_url.jobs.create(:url => new_link, :title => subpage.css(base_url.titlecss).text,
-                       :company => base_url.companycss == ''? base_url.company0 : subpage.css(base_url.companycss).text,
-                       :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss)),
-                       :description => subpage.css(base_url.descriptioncss).text,
-                       :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
-                       :availability => base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\/)(\d+)(\/)(\d+)/).join(''),
-                       :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss)) )  
+        			    job = Job.create(:url => new_link, :title => subpage.css(base_url.titlecss).text)
+                     #  :company => base_url.companycss == ''? base_url.company0 : subpage.css(base_url.companycss).text,
+                       #:comptype => base_url.comptype,# :base_url_id => base_url.id,
+                     #  :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss).text+new_link),
+                     #  :description => subpage.css(base_url.descriptioncss).text,
+                     #  :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
+                   #    :availability => base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\/)(\d+)(\/)(\d+)/).join(''),
+                     #  :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss).text+new_link) )  
+                     #   base_url.jobs << job
             end #of if subpage
 
             rescue Exception => e
@@ -183,9 +188,9 @@ end
     end # if page_url ==
     end #of if sourcetype == 
   	end #of BaseUrl.all.each do |base_url|
-    #puts old_list - new_list
-    #(old_list - new_list).each do |old_url|
-    #  (Job.all.each do |job| job.destroy if job.url == old_url end) end
+    puts old_list - new_list
+    (old_list - new_list).each do |old_url|
+      (Job.all.each do |job| job.destroy if job.url == old_url end) end
 
   end #of function
 end #of MODULE

@@ -1,0 +1,14 @@
+pkg/*
+*.gem
+.bundle
+*.sw?
+.DS_Store
+coverage
+rdoc
+.yardoc
+Gemfile.lock
+.rvmrc
+*.rbc
+.rbx/*
+chromedriver.log
+support/html5.html

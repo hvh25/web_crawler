@@ -1,15 +1,22 @@
-<%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :url %>
-  <%= f.input :description %>
-  <%= f.input :company %>
-  <%= f.input :availability %>
+<div class="span12">
+  <div id = "main" style="margin-left:130px"> 
+  <%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title %>
-  <%= f.input :location %>
-  <%= f.input :requirement %>
-  <%= f.input :jobtype %>
+  <%= f.input :jobtype, :label => 'Job Type', collection: ['Junior', 'Internship/Part-time'] %>
+  <%= f.input :location, collection: ['Hanoi','HCMC','Other'] %>
+  <%= f.input :company %>
+  <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology'] %>
+  <%= f.input :availability %>
+    <div id="description" style="width:400px;float:left;"><%= f.input :description %> </div>
+    <div id="requirement" style="width:400px;float:left;"><%= f.input :requirement %> </div>
+  </div>
+</div> 
+
+<div class="span8" style="margin-left:200px"> 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 search_path, :class => 'btn' %>
   </div>
+</div>
 <% end %>

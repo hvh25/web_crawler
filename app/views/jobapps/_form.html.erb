@@ -1,0 +1,25 @@
+<%= simple_form_for [@job, @jobapp],:url => job_jobapps_path, :html => { :multipart => true } do |f| %>
+  <% if @jobapp.errors.any? %>
+    <div class="error_messages">
+      <h2>Please correct the following errors.</h2>
+      <ul>
+      <% @jobapp.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :education %>
+  <%= f.input :experience %>
+  <%= f.input :skill %>
+  <%= f.input :other %>
+  Please attach your resume (pdf)
+  <br><%= f.file_field :resume %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                job_path(@jobapp.job), :class => 'btn' %>
+  </div>
+<% end %>

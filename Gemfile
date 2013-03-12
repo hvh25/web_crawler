@@ -18,6 +18,11 @@ gem 'will_paginate'
 gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'mechanize'
+gem 'watir-webdriver'
+
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'friendly_id'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,7 +41,7 @@ end
 
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
-gem "declarative_authorization"
+gem "cancan"
 
 
 # To use ActiveModel has_secure_password

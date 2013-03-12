@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
-  before_filter {|c| Authorization.current_user = c.current_user }
 
   protected
 
-  def permission_denied
-  	flash[:error] = 'You need to Sign Up or Sign In to access that page.'
-  	redirect_to new_user_registration_path
+  rescue_from CanCan::AccessDenied do |exception|
+  flash[:error] = "Access denied. You need to be an user or admin to access the previous page."
+  if request.env["HTTP_REFERER"] == nil
+  	redirect_to root_url
+  else
+  	redirect_to :back
   end
+end
 end

@@ -27,22 +27,25 @@
     <%= f.label :sourcetype %><br />
     <%= f.select :sourcetype, ['','job_by_row'] %>
   </div>
+  <div class="field">
+    <%= f.label :jobrowcss %><br />
+    <%= f.text_field :jobrowcss %>
+  </div>
    <div class="field">
     <%= f.label :titlecss %><br />
     <%= f.text_field :titlecss %>
   </div>
   <div class="field">
-    <%= f.label :jobrowcss %><br />
-    <%= f.text_field :jobrowcss %>
+    <%= f.label :companycss %><%= f.text_field :companycss %> or <%= f.label :company0 %><%= f.text_field :company0 %>
   </div>
   <div class="field">
-    <%= f.label :companycss %><%= f.text_field :companycss %> or <%= f.label :company0 %><%= f.text_field :company0 %>
+    <%= f.label :comptype %><%= f.text_field :comptype %>
   </div>
   <div class="field">
     <%= f.label :locationcss %><%= f.text_field :locationcss %> or <%= f.label :location0 %><%= f.text_field :location0 %>
   </div>
   <div class="field">
-    <%= f.label :descriptioncss %><%= f.text_field :descriptioncss %> or <%= f.label :description0 %><%= f.text_field :description0 %>
+    <%= f.label :descriptioncss %><%= f.text_field :descriptioncss %>
   </div>
   <div class="field">
     <%= f.label :requirementcss %><%= f.text_field :requirementcss %> or<%= f.label :requirement0 %><%= f.text_field :requirement0 %>

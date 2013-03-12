@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222212230) do
+ActiveRecord::Schema.define(:version => 20130309164454) do
 
   create_table "assignments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130222212230) do
     t.string   "requirement0"
     t.string   "jobtype0"
     t.integer  "avail0"
+    t.string   "comptype"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -59,27 +60,41 @@ ActiveRecord::Schema.define(:version => 20130222212230) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "jobapps", :force => true do |t|
+    t.text     "education"
+    t.text     "experience"
+    t.integer  "job_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "user_id"
+    t.text     "skill"
+    t.text     "other"
+    t.string   "resume_file_name"
+    t.string   "resume_content_type"
+    t.integer  "resume_file_size"
+    t.datetime "resume_updated_at"
+  end
+
+  add_index "jobapps", ["job_id"], :name => "index_jobapps_on_job_id"
+
   create_table "jobs", :force => true do |t|
     t.string   "url"
-    t.string   "description"
+    t.text     "description",  :limit => 255
     t.string   "company"
     t.date     "availability"
     t.string   "title"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "word_id"
     t.string   "location"
     t.text     "requirement"
     t.string   "jobtype"
-    t.string   "sourcetype"
-    t.string   "jobrowcss"
-    t.string   "companycss"
-    t.string   "locationcss"
-    t.string   "descriptioncss"
-    t.string   "requirementcss"
-    t.string   "availabilitycss"
-    t.string   "jobtypecss"
     t.integer  "user_id"
+    t.integer  "base_url_id"
+    t.string   "comptype"
+    t.string   "slug"
+    t.integer  "source_id"
+    t.string   "source_type"
   end
 
   create_table "roles", :force => true do |t|
@@ -103,6 +118,12 @@ ActiveRecord::Schema.define(:version => 20130222212230) do
     t.datetime "updated_at",                             :null => false
     t.string   "provider"
     t.string   "uid"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.text     "education"
+    t.text     "experience"
+    t.text     "skill"
+    t.string   "resume"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
