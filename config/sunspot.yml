@@ -1,6 +1,6 @@
 production:
   solr:
-    hostname: localhost
+    hostname: ec2-46-137-228-3.ap-southeast-1.compute.amazonaws.com
     port: 8983
     log_level: WARNING
 
