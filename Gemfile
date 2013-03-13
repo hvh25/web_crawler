@@ -26,6 +26,8 @@ gem 'friendly_id'
 
 # Gems used only for assets and not required
 # in production environments by default.
+gem 'twitter-bootstrap-rails', '~> 2.1.0'#,  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -34,7 +36,6 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails', '~> 2.1.0'#,  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'less'
   gem 'less-rails'
 end
