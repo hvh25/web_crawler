@@ -8,7 +8,7 @@ old_list = []  #a list of already existing jobs to compare
 new_list = []
 
 class BaseUrl < ActiveRecord::Base
-  attr_accessible :base, :common_url, :page_url, :sourcetype, :titlecss,
+  attr_accessible :base, :common_url, :page_url, :sourcetype, :titlecss, 
                   :jobrowcss, :companycss, :locationcss, :descriptioncss, :requirementcss, :availabilitycss, :jobtypecss,
                   :comptype, :company0, :location0, :description0, :requirement0, :jobtype0, :avail0
   
