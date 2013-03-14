@@ -4,11 +4,11 @@
           
           <strong>Similar jobs</strong><br><br>
           <% if not @job.base_url.nil? %>
-            <% @job.base_url.jobs.each do |job| %>
-            <%= link_to job.title, job, :target => "_blank"  %><br>
+            <% @job.base_url.jobs.sample(5).each do |job| %>
+            <li><%= link_to job.title, job, :target => "_blank"  %></li>
             <% end %>       
           <% elsif not @job.user.nil? %>
-            <% @job.user.jobs.each do |job| %>
+            <% @job.user.jobs.sample(5).each do |job| %>
               <%= link_to job.title, job, :target => "_blank"  %><br>
             <% end %>
           <% end %>
@@ -32,7 +32,7 @@
               </p>
 
               <% if @job.url != nil%> <!--&& @job.url.include?('internship.edu.vn') == false ---->
-              <%= link_to 'Apply Now',@job.url, :class => 'btn' %> <!--- redirect to job source ----><% end %>
+              <%= link_to 'Apply Now',@job.url, :class => 'btn btn-primary' %><% end %>
               <% if @job.url == nil %>
               <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %></p><% end %>
               

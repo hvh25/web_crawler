@@ -29,6 +29,7 @@ class Job < ActiveRecord::Base
   	text :title, :stored => true
   	string :jobtype
     string :location
+    string :comptype
     #without(:jobtype, 'High Level')
   end
 

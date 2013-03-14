@@ -53,6 +53,19 @@
                     </li>
                   <% end %><!--end of for row in @search-->
                 </ul>
+
+                <h4>Industry</h4>
+                <ul>
+                  <% for row in @search.facet(:comptype).rows %>
+                    <li>
+                      <% if params[:comptype].blank? %>
+                        <%= link_to row.value, params.merge(:comptype => row.value, :page => 1) %> (<%= row.count %>)
+                      <% else %>
+                        <strong><%= row.value %></strong> (<%= link_to "remove", params.merge(:comptype => nil) %>)
+                      <% end %>
+                    </li>
+                  <% end %><!--end of for row in @search-->
+                </ul>
             </div><!--end of div id=facet-->
         </div><!--end of facets/span2-->
 

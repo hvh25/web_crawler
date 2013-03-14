@@ -10,6 +10,7 @@ class SearchController < ApplicationController
       facet(:jobtype, :location) 
       with(:jobtype, params[:jobtype]) if params[:jobtype].present?
       with(:location, params[:location]) if params[:location].present?
+      with(:comptype, params[:comptype]) if params[:comptype].present?
       end
       @result = @search.results
 	end

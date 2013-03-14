@@ -4,8 +4,13 @@ gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development, :test do
+	gem 'sqlite3'
+end
 
-gem 'sqlite3'
+group :production do
+	gem 'pg'	
+end
 
 gem 'nokogiri'
 
@@ -26,7 +31,7 @@ gem 'friendly_id'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'twitter-bootstrap-rails', '~> 2.1.0'#,  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
+#,  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -35,6 +40,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
 
+  gem 'twitter-bootstrap-rails', '~> 2.0.6'
   gem 'uglifier', '>= 1.0.3'
   gem 'less'
   gem 'less-rails'
