@@ -31,10 +31,6 @@ gem 'friendly_id'
 
 # Gems used only for assets and not required
 # in production environments by default.
-<<<<<<< HEAD
-#,  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
-=======
->>>>>>> 3f60f1f291c71d26fe16a3f06b02a67e3d3957ee
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
