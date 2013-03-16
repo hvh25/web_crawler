@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
 
@@ -31,7 +31,7 @@ gem 'friendly_id'
 
 # Gems used only for assets and not required
 # in production environments by default.
-
+	
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -48,6 +48,7 @@ end
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
 gem "cancan"
+gem 'rubber'
 
 
 # To use ActiveModel has_secure_password
@@ -64,3 +65,7 @@ gem "cancan"
 
 # To use debugger
 # gem 'debugger'
+gem 'open4'
+gem 'gelf'
+gem 'graylog2_exceptions', :git => 'git://github.com/wr0ngway/graylog2_exceptions.git'
+gem 'graylog2-resque'
