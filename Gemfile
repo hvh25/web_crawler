@@ -17,11 +17,11 @@ gem 'nokogiri'
 gem 'sunspot_rails'
 
 gem 'sunspot_solr'
+gem 'will_paginate'
 
 gem 'simple_form'
 gem 'devise'
 gem 'omniauth-facebook'
-
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'friendly_id'
@@ -43,6 +43,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'delayed_job_active_record'
 gem "cancan"
 
 
@@ -57,3 +58,6 @@ gem "cancan"
 
 # Deploy with Capistrano
 # gem 'capistrano'
+
+# To use debugger
+# gem 'debugger'

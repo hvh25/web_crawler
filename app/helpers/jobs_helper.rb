@@ -170,7 +170,7 @@ end
       			if subpage = Nokogiri::HTML(open(new_link))
         			    job = Job.create(:url => new_link, :title => subpage.css(base_url.titlecss).text,
                         :company => base_url.companycss == ''? base_url.company0 : subpage.css(base_url.companycss).text,
-                        :comptype => base_url.comptype,# :base_url_id => base_url.id,
+                        :comptype => base_url.comptype, :base_url_id => base_url.id,
                         :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss).text+new_link),
                         :description => subpage.css(base_url.descriptioncss).text,
                         :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
