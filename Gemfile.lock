@@ -72,6 +72,8 @@ GEM
     faraday (0.8.5)
       multipart-post (~> 1.1)
     friendly_id (4.0.9)
+    gelf (1.4.0)
+      json
     hashie (1.2.0)
     hike (1.2.1)
     httpauth (0.2.0)
@@ -196,6 +198,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   friendly_id
+  gelf
   jquery-rails
   less
   less-rails
