@@ -19,7 +19,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['jib'] %>
+  username: <%= ENV['hvh25'] %>
+  password: <%= ENV['quat3tieu'] %>
+  host: <%= ENV['jib.cp7zum1ezb3h.ap-southeast-1.rds.amazonaws.com'] %>
+  port: <%= ENV['3306'] %>
