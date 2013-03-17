@@ -2,7 +2,7 @@ production:
   solr:  
     hostname: ec2-46-137-228-3.ap-southeast-1.compute.amazonaws.com
     port: 8983 #tomcat defaults to port 8080
-    path: '/solr-example'
+    path: '/solr'
     log_level: WARNING
     pid_dir: '/var/run'
 
