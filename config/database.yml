@@ -21,7 +21,7 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: db
+  database: dbpg
   pool: 5
   timeout: 5000
   #adapter: mysql2
