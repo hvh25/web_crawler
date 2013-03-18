@@ -98,8 +98,6 @@ GEM
     mime-types (1.21)
     multi_json (1.6.1)
     multipart-post (1.1.5)
-    mysql2 (0.3.11)
-    mysql2 (0.3.11-x86-mingw32)
     nokogiri (1.5.6)
     nokogiri (1.5.6-x86-mingw32)
     oauth2 (0.8.1)
@@ -117,6 +115,8 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
+    pg (0.14.1)
+    pg (0.14.1-x86-mingw32)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
     rack (1.4.5)
@@ -202,10 +202,10 @@ DEPENDENCIES
   jquery-rails
   less
   less-rails
-  mysql2
   nokogiri
   omniauth-facebook
   paperclip!
+  pg
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
   simple_form

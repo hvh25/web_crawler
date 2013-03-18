@@ -1,5 +1,8 @@
 class ChangeDescriptionFormatInJob < ActiveRecord::Migration
-  def change
-    change_column :jobs, :description, :text, :limit => nil
+  def up
+    change_column :jobs, :description, :text
   end
+	def down
+	    change_column :jobs, :description, :string
+	end
 end
