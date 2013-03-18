@@ -4,7 +4,7 @@
   <%= f.input :title, :required => true %>
   <%= f.input :jobtype, :label => 'Job Type', collection: ['Junior', 'Internship/Part-time'], :required => true %>
   <%= f.input :location, collection: ['Hanoi','HCMC','Other'], :required => true %>
-  <%= f.input :company, :required => true %>
+  <%= f.input :company, :required => true, :input_html => {:style => 'height: 500px;width:300px'} %>
   <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology', :required => true] %>
   <%= f.input :availability, :label => "Deadline to apply" %>
     <div id="description" style="width:400px;float:left;"><%= f.input :description, :required => true %> </div>
@@ -14,7 +14,7 @@
 
 <div class="span8" style="margin-left:200px"> 
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+,'height: 500px'    <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 search_path, :class => 'btn' %>
   </div>
