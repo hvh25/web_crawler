@@ -4,7 +4,6 @@ class Ability
   def initialize(user)
    # user ||= User.new # guest user
     can :show, Job
-    can :create, Job
     if user != nil
 	    if user.role_ids == [1]
 	      can :manage, :all

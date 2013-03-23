@@ -1,12 +1,10 @@
 WebCrawler::Application.routes.draw do
-  resources :users, #path_names: {sign_in: "login", sign_out: "logout"},
+  devise_for :users, #path_names: {sign_in: "login", sign_out: "logout"},
                    controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   get "search/search"
 
   get 'search' => 'search#search', :as => 'search'
-
-  resources :words
 
   resources :jobs do#, :path => '' do
     resources :jobapps, :shallow => true#,:path => ''
@@ -15,8 +13,6 @@ WebCrawler::Application.routes.draw do
   resources :jobapps, :only => [:index]
   
   resources :base_urls
-
-  resources :users
 
   root :to => "search#search"
 
