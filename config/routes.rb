@@ -1,6 +1,6 @@
 WebCrawler::Application.routes.draw do
   devise_for :users do get'/users/sign_out' => 'devise/sessions#destroy', #path_names: {sign_in: "login", sign_out: "logout"},
-                   controllers: {omniauth_callbacks: "omniauth_callbacks"} end
+                   controllers: {omniauth_callbacks: "users/omniauth_callbacks"} end
 
   get "search/search"
 
