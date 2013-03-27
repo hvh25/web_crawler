@@ -1,9 +1,9 @@
 class SearchController < ApplicationController
   def search
   # only search if keyword has been entered
-    if params[:query].nil? || params[:query].empty?
-      @result = [1]
-    else
+   # if params[:query].nil? || params[:query].empty?
+   #   @result = [1]
+   # else
       @search = Job.search do
       keywords params[:query]
       paginate(:per_page => 15, :page => params[:page])
@@ -13,7 +13,7 @@ class SearchController < ApplicationController
       with(:comptype, params[:comptype]) if params[:comptype].present?
       end
       @result = @search.results
-	end
+#	end
  
     respond_to do |format|
       format.html # index.html.erb

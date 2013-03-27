@@ -24,13 +24,12 @@
 	      <div class="nav-collapse">
 	        <ul class="nav">
 	          <li><%= link_to "Jib a Job!", search_path %></li>
-	          <li><%= link_to "Career Blog" %></li>
-	          <li><%= link_to "Contact Us" %></li>
-	          <li><%= link_to "About us" %></li>
+	          <li><%= link_to "Post a Job", new_job_path %></li>
+	          <li><%= link_to "Career Blog", 'https://ijvietnam.wordpress.com/category/career-blog/', :target => "_blank" %></li>
 	        </ul>
 	      </div>
 	      
-	      <div class = "pull-right">
+	      <div class = "pull-right" style='margin-top:9px;'>
 	      	<% if user_signed_in? %>
 			    Logged in as <strong><%= current_user.email %></strong>.
 				<%= link_to 'Edit profile', edit_user_registration_path %> |

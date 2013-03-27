@@ -1,24 +1,29 @@
+<body>
 <div class="container-fluid">  
     <div class="row-fluid">  
-        <div id="spacing" style="padding-left:200px;height:150px;width:800px;float:left;">
+        <div id="spacing" style="padding-left:250px;height:150px;width:800px;float:left;">
 
           <%- model_class = Job.new.class -%>
           
           <br>
           <br>
-          <div id="menu" style="width:300px;float:right;"><%= link_to 'Post a job',
-                    new_job_path, :class => 'btn btn-primary' %>
-        </div>
 
-          <!----------------- SEARCH FORM: ---------------->
-          <%= form_tag search_path, :method => :get do %>
-            <%= text_field_tag :query, nil, :placeholder => "Enter one keyword" %>
-            <%= submit_tag "Jib!", :name => nil %>
-            <br><em>Search for job title, description, skills...</em>
-          <% end %>
-          <% if @result == [1]%><br><br><br><h3>Let's JIB these junior jobs in Vietnam!</h3>
-          <% elsif @result == [] %>TRY AGAIN WITH ONE KEYWORD
+          <% if @result == [] %>
+            <!----------------- SEARCH FORM: ---------------->
+            <%= form_tag search_path, :method => :get do %>
+              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
+              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
+              <br><em>Search for job title, description, skills...</em>
+            <% end %>Please try again with only ONE or TWO words
+          
           <% elsif @result.any? %>
+            <!----------------- SEARCH FORM: ---------------->
+            <%= form_tag search_path, :method => :get do %>
+              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
+              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
+              <br><em>Search for job title, description, skills...</em>
+            <% end %>
+          
         </div><!--span9-->            
     </div><!--end of search box row-->      
 
@@ -26,7 +31,7 @@
     <!-- ------------------SEARCH RESULTS: ------------------>
     <div class="row-fluid" >
       
-        <div class="span2">
+        <div class="span1.5">
             <div id="facets">
                 <h4>Job Type</h4>
                 <ul>
@@ -71,8 +76,8 @@
 
         <div class='span8'><!--search results class-->
 
+          <% if params[:query].blank? == false %>
           <h3><%= @search.total %> jobs found for keyword '<%= params[:query]%>'</h3>
-          
             <!----------JOB TABLE---------------->
             <table class="table table-striped"><br>
               <tbody>
@@ -85,6 +90,20 @@
                 <% end %><!--- END OF RESULTS LIST------>
               </tbody>
             </table><!-- end of search results table -->
+          <%else %>
+            <table class="table table-striped"><br>
+              <tbody>
+                <% @result.shuffle.each do |job| %>
+                  <tr>
+                    <td><%= link_to job.title, job, :target => "_blank" %>
+                      <br><%= job.jobtype %> - <%= job.location %></td>
+                    <td><%= job.company %></td>
+                  </tr>
+                <% end %><!--- END OF RESULTS LIST------>
+              </tbody>
+            </table><!-- end of search results table -->
+              
+          <% end %>
             <!----PAGINATE -------->
                 
                 <%= will_paginate @result %>
@@ -93,5 +112,5 @@
             <!------- RIGHT COLUMN ------>
     </div> 
 </div>
-
+</body>
             
