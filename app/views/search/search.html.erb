@@ -31,8 +31,11 @@
     <!-- ------------------SEARCH RESULTS: ------------------>
     <div class="row-fluid" >
       
-        <div class="span1.5">
+        <div class="span2">
             <div id="facets">
+              <% if params[:query].blank? %>
+                <h4>Let's JIB these jobs in Vietnam!</h4>
+              <% else %>
                 <h4>Job Type</h4>
                 <ul>
                   <% for row in @search.facet(:jobtype).rows %>
@@ -71,6 +74,7 @@
                     </li>
                   <% end %><!--end of for row in @search-->
                 </ul>
+              <% end %>            
             </div><!--end of div id=facet-->
         </div><!--end of facets/span2-->
 
@@ -90,10 +94,14 @@
                 <% end %><!--- END OF RESULTS LIST------>
               </tbody>
             </table><!-- end of search results table -->
+                        <!----PAGINATE -------->
+                
+                <%= will_paginate @result %>
           <%else %>
+            <h3>Top new jobs</h3><br>
             <table class="table table-striped"><br>
               <tbody>
-                <% @result.shuffle.each do |job| %>
+                <% @new.shuffle.each do |job| %>
                   <tr>
                     <td><%= link_to job.title, job, :target => "_blank" %>
                       <br><%= job.jobtype %> - <%= job.location %></td>
@@ -104,10 +112,8 @@
             </table><!-- end of search results table -->
               
           <% end %>
-            <!----PAGINATE -------->
-                
-                <%= will_paginate @result %>
-                <% end %>
+
+    <% end %>
         </div>    
             <!------- RIGHT COLUMN ------>
     </div> 

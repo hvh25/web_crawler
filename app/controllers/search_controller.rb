@@ -13,6 +13,7 @@ class SearchController < ApplicationController
       with(:comptype, params[:comptype]) if params[:comptype].present?
       end
       @result = @search.results
+      @new = Job.order("created_at").last(100).sample(20)
 #	end
  
     respond_to do |format|

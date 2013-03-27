@@ -23,14 +23,16 @@
                   <em>to your friends and/or facebook pages & groups</em>
               <br>
               <br>
+
               <div id='description'><h3><%= model_class.human_attribute_name(:description) %>:</strong></h3><br>
                 <%= h(@job.description).gsub(/\n/, '<br/>').html_safe %> 
               </div>
-              <p>
+
               <% if @job.requirement != 'See Above' %>
                 <div id='requirement'>  <h3><%= model_class.human_attribute_name(:requirement) %>:</strong></h3>
                   <%= h(@job.requirement).gsub(/\n/, '<br/>').html_safe %> 
                 </div>
+                
               <% end %>
               <% if @job.url != nil && @job.url.include?('internship.edu.vn') == false %>
               <%= link_to 'Apply Now',@job.url, :class => 'btn btn-primary' %><% end %>
