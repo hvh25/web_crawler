@@ -33,9 +33,7 @@
       
         <div class="span2">
             <div id="facets">
-              <% if params[:query].blank? %>
-                <h4>Let's JIB these jobs in Vietnam!</h4>
-              <% else %>
+
                 <h4>Job Type</h4>
                 <ul>
                   <% for row in @search.facet(:jobtype).rows %>
@@ -74,13 +72,13 @@
                     </li>
                   <% end %><!--end of for row in @search-->
                 </ul>
-              <% end %>            
+                     
             </div><!--end of div id=facet-->
         </div><!--end of facets/span2-->
 
         <div class='span8'><!--search results class-->
 
-          <% if params[:query].blank? == false %>
+          <% if params[:query].blank? == false || params[:page].blank? == false %>
           <h3><%= @search.total %> jobs found for keyword '<%= params[:query]%>'</h3>
             <!----------JOB TABLE---------------->
             <table class="table table-striped"><br>
@@ -98,19 +96,19 @@
                 
                 <%= will_paginate @result %>
           <%else %>
-            <h3>Top new jobs</h3><br>
-            <table class="table table-striped"><br>
+            <h3>Top new jobs</h3>
+            <table class="table"><br>
               <tbody>
                 <% @new.shuffle.each do |job| %>
                   <tr>
-                    <td><%= link_to job.title, job, :target => "_blank" %>
-                      <br><%= job.jobtype %> - <%= job.location %></td>
-                    <td><%= job.company %></td>
+                    <td><%= link_to job.title, job, :target => "_blank" %> 
+                    <td><%= job.company %> - <%= job.location %></td>
                   </tr>
                 <% end %><!--- END OF RESULTS LIST------>
               </tbody>
-            </table><!-- end of search results table -->
-              
+            </table><!-- end of search results table --><br><br>
+          <h3> Top companies </h3><br>
+          <%= image_tag("companies.jpg", :alt => "companies") %>  
           <% end %>
 
     <% end %>
