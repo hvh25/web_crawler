@@ -20,7 +20,7 @@ end
 
   def self.extract_type(type)  #extract job type from website
     if ['thuc-tap','thuctap','intern-','internship','parttime', 'part-time','part time','interns'].any?{|w| type.downcase[w]}
-      return 'Internship/Part-time' 
+      return 'Internship' 
     else
       return 'Entry Level'
     end
