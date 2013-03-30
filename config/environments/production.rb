@@ -65,7 +65,7 @@ WebCrawler::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-    config.action_mailer.default_url_options = { :host => 'ec2-54-251-67-79.ap-southeast-1.compute.amazonaws.com:3000' }
+    config.action_mailer.default_url_options = { :host => 'www.jib.vn' }
       ActionMailer::Base.smtp_settings = {
                     :address        => "smtp.gmail.com",
                     :port           => 587,

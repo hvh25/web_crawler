@@ -10,12 +10,12 @@
     </div>
   <% end %>
 
-  <%= f.input :education %>
-  <%= f.input :experience %>
-  <%= f.input :skill %>
-  <%= f.input :other %>
-  Please attach your resume (pdf)
-  <br><%= f.file_field :resume %>
+  <%= f.input :education, :input_html => {:style => 'width: 450px', :rows => 10} %>
+  <%= f.input :experience, :input_html => {:style => 'width: 450px', :rows => 15} %>
+  <%= f.input :skill, :input_html => {:style => 'width: 450px', :rows => 7} %>
+  <%= f.input :other, :input_html => {:style => 'width: 450px', :rows => 7} %>
+  <strong style="margin-left:65px"> Please attach your resume (pdf)</strong>
+  <br><strong style="margin-left:120px"><%= f.file_field :resume %></strong>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

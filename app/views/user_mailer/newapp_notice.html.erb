@@ -1,4 +1,6 @@
-Dear <%= @owner.email %>,
+Dear <%= @owner.firstname %>,
 
 You have just received an application for your job post. Please click here to view them.
-localhost:3000<%= jobapp_path(@jobapp) %>
+<br>Jib.vn<%= jobapp_path(@jobapp) %>
+<br>or view all of your applications for the job:
+<br>Jib.vn<%= job_jobapps_path(@job) %>

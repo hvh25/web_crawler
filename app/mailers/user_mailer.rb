@@ -10,8 +10,8 @@ class UserMailer < ActionMailer::Base
     @job = job
     @jobapp = jobapp
     @owner = owner
-    @url  = "localhost:3000"
+    @url  = "Jib.vn"
 
-    mail to: owner.email, subject: "New application for your job posting at jib.vn"
+    mail to: owner.email, subject: "New application for your job posting at Jib.vn"
   end
 end

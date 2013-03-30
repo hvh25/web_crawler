@@ -1,4 +1,11 @@
-<div class="container-fluid">  
+<head>
+  <% content_for :head do %>
+  <title><%= @job.company %> - <%= @job.title %> @ Jib.vn</title>
+  <% end %>
+</head>
+
+<body>
+  <div class="container-fluid">  
     <div class="row-fluid">  
         <div class="span2" style ="padding-top:100px;position:fixed;">
           
@@ -20,17 +27,21 @@
               <h3><%= @job.company %> - <%= @job.location %></h3>
               <div id="fb-root"></div>
                   <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande"></div>
-                  <em>to your friends and/or facebook pages & groups</em>
+                  <em style ="color:#3B5998">to your friends and/or facebook pages & groups</em>
               <br>
               <br>
 
               <div id='description'><h3><%= model_class.human_attribute_name(:description) %>:</strong></h3><br>
-                <%= h(@job.description).gsub(/\n/, '<br/>').html_safe %> 
+              <% if @job.company == 'Bank'%>
+                <%= h(@job.description[0..-1500]).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
+              <% else %>
+                <%= h(@job.description).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %>
+              <% end %>
               </div>
 
               <% if @job.requirement != 'See Above' %>
                 <div id='requirement'>  <h3><%= model_class.human_attribute_name(:requirement) %>:</strong></h3>
-                  <%= h(@job.requirement).gsub(/\n/, '<br/>').html_safe %> 
+                  <%= h(@job.requirement).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
                 </div>
                 
               <% end %>
@@ -54,3 +65,4 @@
         </div>
     </div>
 </div>        
+</body>

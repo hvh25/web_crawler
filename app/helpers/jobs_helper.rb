@@ -109,7 +109,7 @@ end
     new_list = []  #a list of all current links
     Job.all.each do |job| old_list << job.url if job.user.nil? end #exclude jobs from users
 
-    BaseUrl.all.each do |base_url| #if base_url.page_url == 'http://ub.com.vn/forums/41-TIN-NGAN-HANG-TUYEN-DUNG.html'
+    BaseUrl.all.shuffle.each do |base_url| #if base_url.page_url == 'http://ub.com.vn/forums/41-TIN-NGAN-HANG-TUYEN-DUNG.html'
      puts base_url.page_url
 
     if base_url.sourcetype == 'job_by_row' #open source --> extract jobs
