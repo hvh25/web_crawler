@@ -2,7 +2,7 @@
   <div id = "main" style="margin-left:130px"> 
   <%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title, :required => true %>
-  <%= f.input :jobtype, :label => 'Job Type', collection: ['Junior', 'Internship/Part-time'], :required => true %>
+  <%= f.input :jobtype, :label => 'Job Type', collection: ['Entry Level', 'Internship'], :required => true %>
   <%= f.input :location, collection: ['Hanoi','HCMC','Other'], :required => true %>
   <%= f.input :company, :required => true %>
   <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology', :required => true] %>
