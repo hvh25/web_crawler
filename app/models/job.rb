@@ -12,8 +12,8 @@ class Job < ActiveRecord::Base
     new_record?
   end
 
-  #validates_presence_of :availability, :company, :description, :title, :comptype,
-  #                      :location, :requirement, :jobtype
+  validates_presence_of :availability, :company, :description, :title, :comptype,
+                        :location, :requirement, :jobtype
 	has_many :jobapps
 	belongs_to :base_url
   belongs_to :user
