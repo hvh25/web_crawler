@@ -1,38 +1,14 @@
+<head>
+  <% content_for :head do %>
+  <title>Jib.vn: Let's JIB these jobs in Vietnam</title>
+  <% end %>
+</head>
+
 <body>
 <div class="container-fluid">  
     <div class="row-fluid">  
-        <div id="spacing" style="padding-left:250px;height:150px;width:800px;float:left;">
-
-          <%- model_class = Job.new.class -%>
-          
-          <br>
-          <br>
-
-          <% if @result == [] %>
-            <!----------------- SEARCH FORM: ---------------->
-            <%= form_tag search_path, :method => :get do %>
-              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
-              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
-              <br><em>Search for job title, description, skills...</em>
-            <% end %>Please try again with only ONE or TWO words
-          
-          <% elsif @result.any? %>
-            <!----------------- SEARCH FORM: ---------------->
-            <%= form_tag search_path, :method => :get do %>
-              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
-              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
-              <br><em>Search for job title, description, skills...</em>
-            <% end %>
-          
-        </div><!--span9-->            
-    </div><!--end of search box row-->      
-
-
-    <!-- ------------------SEARCH RESULTS: ------------------>
-    <div class="row-fluid" >
-      
         <div class="span2">
-            <div id="facets">
+            <div id="facets"> <br><br><br><br><br><br><br>
 
                 <h4>Job Type</h4>
                 <ul>
@@ -76,8 +52,32 @@
             </div><!--end of div id=facet-->
         </div><!--end of facets/span2-->
 
-        <div class='span8'><!--search results class-->
+        
+        <div class='span6'>
 
+          <%- model_class = Job.new.class -%>
+          
+          <br><br>
+
+          <% if @result == [] %>
+            <!----------------- SEARCH FORM: ---------------->
+            <%= form_tag search_path, :method => :get do %>
+              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
+              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
+              <br><em>Search for job title, description, skills...</em>
+            <% end %>Please try again with only ONE or TWO words
+          
+          <% elsif @result.any? %>
+            <!----------------- SEARCH FORM: ---------------->
+            <%= form_tag search_path, :method => :get do %>
+              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
+              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
+              <br><em>Search for job title, description, skills...</em>
+            <% end %>    
+          <% end %>
+    <!-- ------------------SEARCH RESULTS: ------------------>
+
+          <br>
           <% if params[:query].blank? == false || params[:page].blank? == false %>
           <h3><%= @search.total %> jobs found for keyword '<%= params[:query]%>'</h3>
             <!----------JOB TABLE---------------->
@@ -86,8 +86,7 @@
                 <% @result.each do |job| %>
                   <tr>
                     <td><%= link_to job.title, job, :target => "_blank" %>
-                      <br><%= job.jobtype %> - <%= job.location %></td>
-                    <td><%= job.company %></td>
+                      <br><%= job.company %> - <%= job.location %></td>
                   </tr>
                 <% end %><!--- END OF RESULTS LIST------>
               </tbody>
@@ -107,11 +106,12 @@
                 <% end %><!--- END OF RESULTS LIST------>
               </tbody>
             </table><!-- end of search results table --><br><br>
-          <h3> Top companies </h3><br>
-          <%= image_tag("companies.jpg", :alt => "companies") %>  
+          <h3> Top companies <br><br>
+          <%= image_tag("companies.jpg", :alt => "companies") %> 
+          </h3> 
           <% end %>
 
-    <% end %>
+
         </div>    
             <!------- RIGHT COLUMN ------>
     </div> 

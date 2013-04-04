@@ -2,11 +2,11 @@
   <div id = "main" style="margin-left:130px"> 
   <%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title, :required => true %>
-  <%= f.input :jobtype, :label => 'Job Type', collection: ['Entry Level', 'Internship'], :required => true %>
-  <%= f.input :location, collection: ['Hanoi','HCMC','Other'], :required => true %>
-  <%= f.input :company, :required => true %>
-  <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology', :required => true] %>
-  <%= f.input :availability, :label => "Deadline to apply" %>
+  <%= f.input :jobtype, :label => 'Job Type', :collection => ['Entry Level','Internship'], :as => :radio, :required => true %>
+  <%= f.input :location, collection: ['Hanoi','HCMC','Other'],:as => :radio, :required => true %>
+  <%= f.input :company, :required => true,:input_html => {:style=> 'text-align: left'} %>
+  <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods & Services','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology', 'Other'], :required => true %>
+  <%= f.input :availability, :label => "Deadline to apply",:input_html => {:style=> 'width: 71px'} %>
     <div id="description" style="width:400px;float:left;"><%= f.input :description, :required => true %> </div>
     <div id="requirement" style="width:400px;float:left;"><%= f.input :requirement, :required => true %> </div>
   </div>
@@ -14,6 +14,7 @@
 
 <div class="span8" style="margin-left:200px"> 
   <div class="form-actions">
+    *Notification regarding new applicants' <strong>basic information and resume</strong> will be sent to your email address.<br><br>  
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 search_path, :class => 'btn' %>

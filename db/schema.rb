@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309164454) do
+ActiveRecord::Schema.define(:version => 20130403044607) do
 
   create_table "assignments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(:version => 20130309164454) do
     t.integer  "avail0"
     t.string   "comptype"
   end
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

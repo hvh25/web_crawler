@@ -1,4 +1,5 @@
 WebCrawler::Application.routes.draw do
+
   devise_for :users, #path_names: {sign_in: "login", sign_out: "logout"},
                    :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
@@ -10,6 +11,10 @@ WebCrawler::Application.routes.draw do
 
   resources :jobs do#, :path => '' do
     resources :jobapps, :shallow => true#,:path => ''
+  end
+
+  resources :jobs do
+    resources :comments
   end
 
   resources :jobapps, :only => [:index]

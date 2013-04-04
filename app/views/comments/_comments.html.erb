@@ -1,0 +1,17 @@
+<div id="comments">
+	<% @comments.each do |comment| %>
+		<div class="comment">
+			<% if comment.user == comment.commentable.user %>
+				<div id ='answer'><strong>Employer</strong> <%= comment.content %></div>
+			<% else %>
+				<div id ='question'>
+					<% if comment.user == nil %>
+						<strong>Guest</strong> <%= comment.content %>
+					<% else %>
+						<strong><%= comment.user.firstname %></strong> <%= comment.content %>
+					<% end %>		
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>

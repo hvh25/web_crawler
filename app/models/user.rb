@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :jobapps
   has_many :assignments
   has_many :roles, :through => :assignments	
+  has_many :comments
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

@@ -1,25 +1,20 @@
 <div id="content" style=";padding-top:50px;padding-left:200px;width:800px;float:left;">
 	<%- model_class = @jobapp.class -%>
-	<h1><%=t '.title', :default => model_class.model_name.human %></h1>
 
-	<h2><%= link_to @jobapp.job.title, job_path(@jobapp.job) %></h2>
+	<h2>Application for <%= link_to @jobapp.job.title, job_path(@jobapp.job) %></h2><br><br><br>
 	<h3><%= @jobapp.user.lastname%> <%=@jobapp.user.firstname %></h3>
-	<%=link_to "Download applicant's resume", @jobapp.resume.url(:original, false) %><br>
+	<%=link_to "Download applicant's resume", @jobapp.resume.url(:original, false) %><br><br>
 	<p>
-	  <strong><%= model_class.human_attribute_name(:education) %>:</strong><br>
+	  <strong>Message from applicant:</strong><br>
 	  <%= @jobapp.education %>
 	</p>
 	<p>
-	  <strong><%= model_class.human_attribute_name(:experience) %>:</strong><br>
-	  <%= @jobapp.experience %>
-	</p>
-	<p>
-	  <strong><%= model_class.human_attribute_name(:skill) %>:</strong><br>
-	  <%= @jobapp.skill %>
-	</p>
-	<p>
-	  <strong><%= model_class.human_attribute_name(:other) %>:</strong><br>
+	  <strong>Phone number:</strong><br>
 	  <%= @jobapp.other %>
+	</p>
+	<p>
+	  <strong>Email Address:</strong><br>
+	  <%= @jobapp.user.email %>
 	</p>
 
 	<div class="form-actions">

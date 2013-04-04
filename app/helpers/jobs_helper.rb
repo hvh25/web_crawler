@@ -134,7 +134,7 @@ end
                        :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss).text+new_link),
                        :description => subpage.css(base_url.descriptioncss).text,
                        :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
-                       :availability => Time.now,#base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\-)(\d+)(\-)(\d+)/).join(''),
+                       :availability => Time.now+(60*60*24*30),#base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\-)(\d+)(\-)(\d+)/).join(''),
                        :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss).text+new_link) )    
                   #    base_url.jobs << job
             end #of if subpage
@@ -174,7 +174,7 @@ end
                         :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss).text+new_link),
                         :description => subpage.css(base_url.descriptioncss).text,
                         :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
-                        :availability => Time.now,#base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\/)(\d+)(\/)(\d+)/).join(''),
+                        :availability => Time.now+(60*60*24*30),#base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text.scan(/(\d+)(\/)(\d+)(\/)(\d+)/).join(''),
                         :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss).text+new_link) )  
                      #   base_url.jobs << job
             end #of if subpage

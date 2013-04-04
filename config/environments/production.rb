@@ -70,7 +70,7 @@ WebCrawler::Application.configure do
                     :address        => "smtp.gmail.com",
                     :port           => 587,
                     :authentication => :plain,
-                    :user_name      => "hieu.ha.drexel@gmail.com",
+                    :user_name      => "mod.jib.vn@gmail.com",
                     :password       => "quat3tieu",
                     :openssl_verify_mode  => 'none'
   } 

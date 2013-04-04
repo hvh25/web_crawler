@@ -9,7 +9,7 @@
     <div class="row-fluid">  
         <div class="span2" style ="padding-top:100px;position:fixed;">
           
-          <strong>Similar jobs</strong><br><br>
+          <h4>Similar jobs</h4>
           <% if not @job.base_url.nil? %>
             <% @job.base_url.jobs.sample(5).each do |job| %>
             <li><%= link_to job.title, job, :target => "_blank"  %></li>
@@ -25,13 +25,13 @@
           <%- model_class = @job.class -%>
               <h2><%= @job.title %> </h2>
               <h3><%= @job.company %> - <%= @job.location %></h3>
-              <div id="fb-root"></div>
+              
                   <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande"></div>
                   <em style ="color:#3B5998">to your friends and/or facebook pages & groups</em>
               <br>
               <br>
 
-              <div id='description'><h3><%= model_class.human_attribute_name(:description) %>:</strong></h3><br>
+              <div id='description'><h3><%= model_class.human_attribute_name(:description) %>:</h3><br>
               <% if @job.company == 'Bank'%>
                 <%= h(@job.description[0..-1500]).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
               <% else %>
@@ -40,15 +40,22 @@
               </div>
 
               <% if @job.requirement != 'See Above' %>
-                <div id='requirement'>  <h3><%= model_class.human_attribute_name(:requirement) %>:</strong></h3>
+                <div id='requirement'><h3><%= model_class.human_attribute_name(:requirement) %>:</h3><br>
                   <%= h(@job.requirement).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
                 </div>
                 
               <% end %>
               <% if @job.url != nil && @job.url.include?('internship.edu.vn') == false %>
-              <%= link_to 'Apply Now',@job.url, :class => 'btn btn-primary' %><% end %>
+                <%= link_to 'Apply Now',@job.url, :class => 'btn btn-primary' %>
+              <% end %>
               <% if @job.url == nil %>
-              <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %></p><% end %>
+                <div id='availability'>  <h3>Deadline to apply:</h3>
+                <br><%= h(@job.availability) %> 
+              
+              <br><br>
+
+                <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %></p>
+              <% end %>
               
               <div class="form-actions">
                 <% if can? :edit, @job %>
@@ -62,6 +69,12 @@
                             :class => 'btn btn-danger' %>
                 <% end %> <!--- if permitted to -->            
               </div>
+
+              <% if @job.url == nil %>
+                  <h3>Questions & Answers</h3>
+                  <%= render "comments/form" %>
+                  <%= render "comments/comments" %>
+              <% end %>
         </div>
     </div>
 </div>        

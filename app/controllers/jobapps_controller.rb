@@ -4,6 +4,9 @@ class JobappsController < ApplicationController
   
   def index
     @jobapps = @job.jobapps
+    @commentable = @job
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def show

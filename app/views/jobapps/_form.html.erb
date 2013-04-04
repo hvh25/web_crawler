@@ -10,11 +10,9 @@
     </div>
   <% end %>
 
-  <%= f.input :education, :input_html => {:style => 'width: 450px', :rows => 10} %>
-  <%= f.input :experience, :input_html => {:style => 'width: 450px', :rows => 15} %>
-  <%= f.input :skill, :input_html => {:style => 'width: 450px', :rows => 7} %>
-  <%= f.input :other, :input_html => {:style => 'width: 450px', :rows => 7} %>
-  <strong style="margin-left:65px"> Please attach your resume (pdf)</strong>
+  <%= f.input :education,label:"Message to employer", :input_html => {:style => 'width: 450px', :rows => 10} %>
+  <%= f.input :other,label: "Phone number", :input_html => {:style => 'width: 450px', :rows => 1} %>
+  <strong style="margin-left:10px">* Please attach your resume (pdf)</strong>
   <br><strong style="margin-left:120px"><%= f.file_field :resume %></strong>
 
   <div class="form-actions">

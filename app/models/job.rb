@@ -15,6 +15,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :availability, :company, :description, :title, :comptype,
                         :location, :requirement, :jobtype
 	has_many :jobapps
+  has_many :comments, as: :commentable
 	belongs_to :base_url
   belongs_to :user
   

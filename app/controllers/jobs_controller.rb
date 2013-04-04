@@ -39,6 +39,9 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
     #@job = Job.find(params[:id])
+    @commentable = @job
+    @comments = @commentable.comments
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb

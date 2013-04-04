@@ -1,0 +1,19 @@
+<%= simple_form_for [@commentable, @comment] do |f| %>
+	<%if @comment.errors.any? %>
+		<div class='error_messages'>
+			<h2>Please correct the following errors.</h2>
+			<ul>
+			<% @comment.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>	
+
+	<div class="comment_field">
+		<%= f.input :content, :label => false, :input_html => {:style => 'width: 380px', rows: 1} %>
+	</div>
+	<div class="actions">
+		<%= f.button :submit, "Submit",:class => 'btn-primary', :style => 'margin-left:345px' %>
+	</div>
+<% end %>	
