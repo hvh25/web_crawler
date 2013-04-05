@@ -12,6 +12,6 @@ class UserMailer < ActionMailer::Base
     @owner = owner
     @url  = "Jib.vn"
 
-    mail to: owner.email, subject: "New application for your job posting at Jib.vn"
+    mail to: owner.email, subject: "New application for "+job.title+" at Jib.vn"
   end
 end

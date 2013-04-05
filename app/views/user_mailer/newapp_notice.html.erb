@@ -1,6 +1,6 @@
-Dear <%= @owner.firstname %>,<br>
+Dear <%= @owner.firstname %>,<br><br>
 
-You have just received an application for your job post. Please click here to view them.
-<br>Jib.vn<%= jobapp_path(@jobapp) %>
-<br>or view all of your applications for the job:
-<br>Jib.vn<%= job_jobapps_path(@job) %>
+You have just received an application for your job post. Please follow the link below to view it:
+<br>www.jib.vn<%= jobapp_path(@jobapp) %>
+<br><br>or view all of your applications and questions for the job:
+<br>www.jib.vn<%= job_jobapps_path(@job) %>

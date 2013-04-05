@@ -46,6 +46,8 @@ end
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
 gem "cancan"
+gem 'impressionist'
+gem 'blogit'
 
 
 # To use ActiveModel has_secure_password

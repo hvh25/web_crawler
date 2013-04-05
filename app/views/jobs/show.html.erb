@@ -49,12 +49,14 @@
                 <%= link_to 'Apply Now',@job.url, :class => 'btn btn-primary' %>
               <% end %>
               <% if @job.url == nil %>
-                <div id='availability'>  <h3>Deadline to apply:</h3>
-                <br><%= h(@job.availability) %> 
-              
-              <br><br>
 
-                <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %></p>
+                <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %><strong> Deadline: <%= h(@job.availability) %></strong> </p> <br>
+
+                <h3>Questions & Answers</h3>
+                <em>All questions will be forwarded to employer</em>
+                  <%= render "comments/form" %>
+                  <%= render "comments/comments" %>
+
               <% end %>
               
               <div class="form-actions">
@@ -69,12 +71,6 @@
                             :class => 'btn btn-danger' %>
                 <% end %> <!--- if permitted to -->            
               </div>
-
-              <% if @job.url == nil %>
-                  <h3>Questions & Answers</h3>
-                  <%= render "comments/form" %>
-                  <%= render "comments/comments" %>
-              <% end %>
         </div>
     </div>
 </div>        

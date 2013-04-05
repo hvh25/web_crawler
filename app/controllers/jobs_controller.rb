@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   load_and_authorize_resource
+  impressionist :actions=>[:show,:index]
 
   def index
    # @jobs = Job.all

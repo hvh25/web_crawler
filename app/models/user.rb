@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   after_initialize :default_values
+  blogs #blogit
 
   has_many :jobs
   has_many :jobapps

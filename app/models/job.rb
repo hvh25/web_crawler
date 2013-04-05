@@ -7,6 +7,7 @@ require "friendly_id"
 class Job < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
+  is_impressionable #view counts
 
   def should_generate_new_friendly_id?
     new_record?

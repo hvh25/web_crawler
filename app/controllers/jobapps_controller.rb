@@ -38,9 +38,7 @@ class JobappsController < ApplicationController
     @user = current_user
     @owner = @job.user
     if @jobapp.save
-      @user.education = @jobapp.education
-      @user.experience = @jobapp.experience
-      @user.skill = @jobapp.skill
+      @user.email = @jobapp.other
       UserMailer.newapp_notice(@owner,@job,@jobapp).deliver  
       redirect_to [@job], notice: "Successfully submitted application."
     else
