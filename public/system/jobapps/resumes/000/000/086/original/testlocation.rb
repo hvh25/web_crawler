@@ -1,0 +1,1 @@
+puts "http://ub.com.vn/threads/34588-SeABank-tuyen-dung-Giao-dich-vien-tai-TPHCM-amp-Nha-Trang-20-03-2013.html".include?('HCM')

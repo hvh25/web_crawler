@@ -1,6 +1,26 @@
 <div class="span12">
   <div id = "main" style="margin-left:130px"> 
   <%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% if current_user == nil %>
+  <% @job.build_user(job_ids: [@job.id]) %>
+  <%= f.fields_for :user do |builder| %>
+    <div class="build-user">
+      <h3>Create an account or <%= link_to "Login", new_user_session_path %></h3><br><br>
+      <%= builder.input :lastname, :required => true,:placeholder => "last & middle name" %> 
+      <%= builder.input :firstname, :required => true %>
+      <%= builder.input :email, :required => true, :autofocus => true, :placeholder => "get updates for your application" %>
+                        
+      <% if builder.object.password_required? %>
+      <%= builder.input :password, :required => true, :placeholder => "at least 8 characters" %>
+      <%= builder.input :password_confirmation, :required => true %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<h3>Job Information</h3><br><br>
+
   <%= f.input :title, :required => true %>
   <%= f.input :jobtype, :label => 'Job Type', :collection => ['Entry Level','Internship'], :as => :radio, :required => true %>
   <%= f.input :location, collection: ['Hanoi','HCMC','Other'],:as => :radio, :required => true %>

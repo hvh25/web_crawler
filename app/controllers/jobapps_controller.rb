@@ -24,7 +24,9 @@ class JobappsController < ApplicationController
     #@job = Job.find(params[:job_id])
     @jobapps = @job.jobapps
     @jobapp = @jobapps.new
-
+    #@jobapp.user = current_user
+    #@user = current_user
+    #@jobapp.user.update_attributes(params[:user])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @jobapp }
@@ -32,13 +34,15 @@ class JobappsController < ApplicationController
   end
 
   def create
-    @job = Job.find(params[:job_id])
     @jobapp = @job.jobapps.new(params[:jobapp])
-    @jobapp.user = current_user
-    @user = current_user
     @owner = @job.user
+    if current_user != nil
+      @jobapp.user = current_user
+      @user = current_user
+    end
+
     if @jobapp.save
-      @user.email = @jobapp.other
+      #@user.update_attributes(params[:user])
       UserMailer.newapp_notice(@owner,@job,@jobapp).deliver  
       redirect_to [@job], notice: "Successfully submitted application."
     else

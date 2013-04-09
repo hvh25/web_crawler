@@ -13,15 +13,17 @@ class Job < ActiveRecord::Base
     new_record?
   end
 
-  validates_presence_of :availability, :company, :description, :title, :comptype,
+  validates_presence_of :company, :description, :title, :comptype,
                         :location, :requirement, :jobtype
 	has_many :jobapps
   has_many :comments, as: :commentable
 	belongs_to :base_url
   belongs_to :user
   
-  attr_accessible :availability, :company, :description, :title, :comptype,
-                  :url, :location, :requirement, :jobtype, :base_url_id
+  attr_protected
+  #attr_accessible :availability, :company, :description, :title, :comptype,
+                #  :url, :location, :requirement, :jobtype, :base_url_id, :id
+  accepts_nested_attributes_for :user, :allow_destroy => true
 
   
 

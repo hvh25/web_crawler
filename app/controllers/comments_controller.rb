@@ -16,10 +16,17 @@ class CommentsController < ApplicationController
     @owner = @commentable.user
     @comment = @commentable.comments.new(params[:comment])
     @comment.user = current_user
-  	if @comment.save
-  		redirect_to @commentable, notice: "Comment created."
-  	else
-  		render :new
-  	end
+
+    respond_to do |format|
+      format.html {
+      	if @comment.save
+          redirect_to @commentable
+        else
+      		render :new
+      	end
+      }
+      format.json
+    end  
   end
+
 end

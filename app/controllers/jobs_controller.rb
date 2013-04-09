@@ -69,7 +69,10 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    @job.user = current_user
+    if current_user != nil
+      @job.user = current_user
+      @user = current_user
+    end
     
     respond_to do |format|
       if @job.save

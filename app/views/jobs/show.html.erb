@@ -33,30 +33,35 @@
 
               <div id='description'><h3><%= model_class.human_attribute_name(:description) %>:</h3><br>
               <% if @job.company == 'Bank'%>
-                <%= h(@job.description[0..-1500]).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
+                <%= (@job.description[0..2000]).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
               <% else %>
                 <%= h(@job.description).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %>
               <% end %>
               </div>
 
-              <% if @job.requirement != 'See Above' %>
+              <% if @job.requirement.downcase != 'see above' %>
                 <div id='requirement'><h3><%= model_class.human_attribute_name(:requirement) %>:</h3><br>
                   <%= h(@job.requirement).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %> 
-                </div>
-                
+                </div>                
               <% end %>
-              <% if @job.url != nil && @job.url.include?('internship.edu.vn') == false %>
-                <%= link_to 'Apply Now',@job.url, :class => 'btn btn-primary' %>
-              <% end %>
-              <% if @job.url == nil %>
 
-                <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %><strong> Deadline: <%= h(@job.availability) %></strong> </p> <br>
+              <% if @job.url != nil && @job.url.include?('internship.edu.vn') == false %>
+                <p><%= link_to 'More info',@job.url, :class => 'btn btn-primary' %>
+                  <strong> Deadline: 
+                          <% if h(@job.availability) == '0' %>proceed for more info
+                          <% else %><%= h(@job.availability) %>
+                          <% end %>
+                </strong> </p> <br>
+              <% end %>
+
+              <% if @job.url == nil %> <!--- JOBS @ JIB.VN ---->
+                <p><%= link_to "Apply Now", [:new, @job, :jobapp], :class => 'btn btn-primary' %>
+                <strong> Deadline: <%= h(@job.availability) %></strong> </p> <br>
 
                 <h3>Questions & Answers</h3>
                 <em>All questions will be forwarded to employer</em>
-                  <%= render "comments/form" %>
                   <%= render "comments/comments" %>
-
+                  <%= render "comments/form" %>
               <% end %>
               
               <div class="form-actions">

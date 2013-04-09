@@ -13,8 +13,7 @@
 <% @base_urls.each do |base_url| %>
   <tr>
     <td><%= base_url.page_url %></td>
-    <td><%= base_url.common_url %></td>
-    <td><%= base_url.base %></td>
+    <td><%= base_url.availabilitycss %></td>
     <td><%= link_to 'Show', base_url %></td>
     <td><%= link_to 'Edit', edit_base_url_path(base_url) %></td>
     <td><%= link_to 'Destroy', base_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
