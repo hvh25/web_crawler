@@ -5,19 +5,22 @@
   <thead>
     <tr>
       
-      <th>Applicants</th>
+      <th>Applicant</th>
+      <th>Email Address</th>
+      <th>Phone Number</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @jobapps.each do |jobapp| %>
       <tr>
-        <td><%= link_to jobapp.user.email, jobapp_path(jobapp) %></td>
+        <td><%= link_to jobapp.user.lastname+' '+jobapp.user.firstname, jobapp_path(jobapp) %></td>
+        <td><%= jobapp.user.email %></td>
+        <td><%= jobapp.other %></td>
 
         <td>
           <%=link_to "Resume", jobapp.resume.url(:original, false),:class => 'btn btn-mini btn-primary' %>	
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_jobapp_path(jobapp), :class => 'btn btn-mini' %>
+          <%= link_to 'View',jobapp_path(jobapp), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       jobapp_path(jobapp),
                       :method => :delete,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409174230) do
+ActiveRecord::Schema.define(:version => 20130412182247) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -28,29 +28,11 @@ ActiveRecord::Schema.define(:version => 20130409174230) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
-
   create_table "assignments", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "user_id"
-    t.string   "role_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
   end
 
   create_table "base_urls", :force => true do |t|
@@ -113,22 +95,6 @@ ActiveRecord::Schema.define(:version => 20130409174230) do
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
   create_table "impressions", :force => true do |t|
     t.string   "impressionable_type"
     t.integer  "impressionable_id"
@@ -173,13 +139,12 @@ ActiveRecord::Schema.define(:version => 20130409174230) do
 
   create_table "jobs", :force => true do |t|
     t.string   "url"
-    t.text     "description",  :limit => 255
+    t.text     "description"
     t.string   "company"
     t.date     "availability"
     t.string   "title"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "word_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "location"
     t.text     "requirement"
     t.string   "jobtype"
@@ -187,9 +152,7 @@ ActiveRecord::Schema.define(:version => 20130409174230) do
     t.integer  "base_url_id"
     t.string   "comptype"
     t.string   "slug"
-    t.integer  "source_id"
-    t.string   "source_type"
-    t.string   "deadline"
+    t.text     "compinfo"
   end
 
   create_table "roles", :force => true do |t|
@@ -245,7 +208,6 @@ ActiveRecord::Schema.define(:version => 20130409174230) do
     t.string   "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "job_id"
   end
 
 end

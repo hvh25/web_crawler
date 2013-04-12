@@ -30,6 +30,12 @@
   
   <h3>Your Application</h3><br><br>
 
+  Name to be displayed to employer: <strong><%= current_user.lastname%> <%= current_user.firstname %></strong>
+  <%= link_to "Edit", edit_user_registration_path%><br><br>
+
+  Email address to be contacted by employer: <strong><%= current_user.email%></strong>
+  <%= link_to "Edit", edit_user_registration_path%><br><br>
+
   <%= f.input :education,label:"Message to employer", :input_html => {:style => 'width: 450px', :rows => 10} %>
   <%= f.input :other,label: "Phone number", :input_html => {:style => 'width: 450px', :rows => 1} %>
   <strong style="margin-left:10px">* Please attach your resume (pdf)</strong>

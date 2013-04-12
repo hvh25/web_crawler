@@ -21,20 +21,24 @@
 
 <h3>Job Information</h3><br><br>
 
+  <% if user_signed_in? %>
+  *Send job applications to <strong><%= current_user.email %></strong> <%= link_to "Edit", edit_user_registration_path%><br><br> 
+  <% end %>
+
   <%= f.input :title, :required => true %>
   <%= f.input :jobtype, :label => 'Job Type', :collection => ['Entry Level','Internship'], :as => :radio, :required => true %>
   <%= f.input :location, collection: ['Hanoi','HCMC','Other'],:as => :radio, :required => true %>
   <%= f.input :company, :required => true,:input_html => {:style=> 'text-align: left'} %>
+  <%= f.input :compinfo, label: "Company Information", :input_html => {:style => 'width: 450px', :rows => 5} %>
   <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods & Services','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology', 'Other'], :required => true %>
   <%= f.input :availability, :label => "Deadline to apply",:input_html => {:style=> 'width: 71px'} %>
-    <div id="description" style="width:400px;float:left;"><%= f.input :description, :required => true %> </div>
-    <div id="requirement" style="width:400px;float:left;"><%= f.input :requirement, :required => true %> </div>
+  <%= f.input :description, :required => true, :input_html => {:style => 'width: 450px', :rows => 10} %>
+  <%= f.input :requirement, :required => true, :input_html => {:style => 'width: 450px', :rows => 10} %>
   </div>
 </div> 
 
 <div class="span8" style="margin-left:200px"> 
-  <div class="form-actions">
-    *Notification regarding new applicants' <strong>basic information and resume</strong> will be sent to your email address.<br><br>  
+  <div class="form-actions"> 
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 search_path, :class => 'btn' %>

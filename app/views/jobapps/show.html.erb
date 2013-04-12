@@ -19,9 +19,8 @@
 
 	<div class="form-actions">
 	  <%= link_to t('.back', :default => t("helpers.links.back")),
-	              job_path(@jobapp.job), :class => 'btn'  %>
-	  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-	              edit_jobapp_path(@jobapp), :class => 'btn' %>
+	              job_jobapps_path(@jobapp.job), :class => 'btn'  %>
+	              
 	  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
 	              jobapp_path(@jobapp),
 	              :method => 'delete',
