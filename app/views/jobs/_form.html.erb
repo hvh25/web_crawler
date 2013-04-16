@@ -1,6 +1,6 @@
 <div class="span12">
   <div id = "main" style="margin-left:130px"> 
-  <%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= simple_form_for @job, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
 
   <% if current_user == nil %>
   <% @job.build_user(job_ids: [@job.id]) %>
@@ -31,7 +31,13 @@
   <%= f.input :company, :required => true,:input_html => {:style=> 'text-align: left'} %>
   <%= f.input :compinfo, label: "Company Information", :input_html => {:style => 'width: 450px', :rows => 5} %>
   <%= f.input :comptype, :label => 'Company Type', collection: ['Consumer Goods & Services','Finance & Banking', 'Non-Profit', 'Professional Services', 'Start-Up','Technology', 'Other'], :required => true %>
-  <%= f.input :availability, :label => "Deadline to apply",:input_html => {:style=> 'width: 71px'} %>
+  <%= f.input :availability, :label => "Deadline to apply",:input_html => {:style=> 'width: 71px'}, :required => true %>
+
+  <div id='job-photo' style="margin-left:85px">Job Image
+    <strong style="margin-left:6px"><%= f.file_field :photo %></strong>
+  </div>
+  <br>
+
   <%= f.input :description, :required => true, :input_html => {:style => 'width: 450px', :rows => 10} %>
   <%= f.input :requirement, :required => true, :input_html => {:style => 'width: 450px', :rows => 10} %>
   </div>

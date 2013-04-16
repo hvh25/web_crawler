@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412182247) do
+ActiveRecord::Schema.define(:version => 20130416172857) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(:version => 20130412182247) do
     t.string   "company"
     t.date     "availability"
     t.string   "title"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "location"
     t.text     "requirement"
     t.string   "jobtype"
@@ -153,6 +153,10 @@ ActiveRecord::Schema.define(:version => 20130412182247) do
     t.string   "comptype"
     t.string   "slug"
     t.text     "compinfo"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "roles", :force => true do |t|

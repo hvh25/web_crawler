@@ -9,6 +9,10 @@ class Job < ActiveRecord::Base
   friendly_id :title, use: :slugged
   is_impressionable #view counts
 
+  has_attached_file :photo, :styles => { :small => "450x450>" }
+  validates_attachment_size :photo, :less_than => 500.kilobytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
   def should_generate_new_friendly_id?
     new_record?
   end
