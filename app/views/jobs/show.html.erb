@@ -31,7 +31,10 @@
               <br>
               <br>
 
+              <%if @job.photo.exists? %>
               <br><%= image_tag @job.photo.url(:small) %> <br><br>
+              <% end %>
+              
 
               <div id='compinfo'>
               <h3><%= @job.company %></h3>
