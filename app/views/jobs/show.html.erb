@@ -55,13 +55,16 @@
                 </div>                
               <% end %>
 
-              <% if @job.url != nil && @job.url.include?('internship.edu.vn') == false %>
-                <p><%= link_to 'More info',@job.url, :class => 'btn btn-primary' %>
+              <% if @job.url != nil %>
+                <% if @job.url.include?('internship.edu.vn') == false %>
+                  <p><%= link_to 'More info',@job.url, :class => 'btn btn-primary' %></p>
+                <% end %>
+            
                   <strong> Deadline: 
-                          <% if h(@job.availability) == '0' %>proceed for more info
+                          <% if @job.availability > (Date.today + 60.days) %>proceed for more info
                           <% else %><%= h(@job.availability) %>
                           <% end %>
-                </strong> </p> <br>
+                  </strong> <br>
               <% end %>
 
               <% if @job.url == nil %> <!--- JOBS @ JIB.VN ---->
