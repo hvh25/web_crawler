@@ -32,12 +32,13 @@ class Job < ActiveRecord::Base
   
 
   searchable do
-  	text :description, :company
+  	text :description, :company, :requirement
   	#text :jobtype
   	text :title, :stored => true
   	string :jobtype
     string :location
     string :comptype
+    date :availability
     #without(:jobtype, 'High Level')
   end
 

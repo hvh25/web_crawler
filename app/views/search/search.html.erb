@@ -59,23 +59,15 @@
           
           <br><br>
 
-          <% if @result == [] %>
-            <!----------------- SEARCH FORM: ---------------->
-            <%= form_tag search_path, :method => :get do %>
-              <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
-              <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
-              <br><em>Search for job title, description, skills...</em>
-            <% end %>Please try again with only ONE or TWO words
-          
-          <% elsif @result.any? %>
             <!----------------- SEARCH FORM: ---------------->
             <%= form_tag search_path, :method => :get do %>
               <%= text_field_tag :query, nil, :placeholder => "Enter one keyword to begin search" %>
               <%= submit_tag " Jib ! ", :name => nil, :class => 'btn btn-primary' %>
               <br><em>Search for job title, description, skills...</em>
             <% end %>    
-          <% end %>
-    <!-- ------------------SEARCH RESULTS: ------------------>
+
+            <!-- ------------------SEARCH RESULTS: ------------------>
+
 
           <br>
           <% if params[:query].blank? == false || params[:page].blank? == false %>

@@ -11,12 +11,12 @@
           
           <h4>Similar jobs</h4>
           <% if not @job.base_url.nil? %>
-            <% @job.base_url.jobs.sample(5).each do |job| %>
+            <% @job.base_url.jobs.select{|job| job.availability >= Date.today && job != @job}.sample(5).each do |job| %>
             <li><%= link_to job.title, job, :target => "_blank"  %></li>
             <% end %>       
           <% elsif not @job.user.nil? %>
-            <% @job.user.jobs.sample(5).each do |job| %>
-              <%= link_to job.title, job, :target => "_blank"  %><br>
+            <% @job.user.jobs.select{|job| job.availability >= Date.today && job != @job}.sample(5).each do |job| %>
+            <li><%= link_to job.title, job, :target => "_blank"  %></li>
             <% end %>
           <% end %>
         </div>
