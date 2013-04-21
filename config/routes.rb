@@ -1,12 +1,15 @@
 WebCrawler::Application.routes.draw do
 
+
+  
+  
   #ActiveAdmin.routes(self)
 
   devise_for :users, #path_names: {sign_in: "login", sign_out: "logout"},
                    :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   devise_for :users do get'/users/sign_out' => 'devise/sessions#destroy' end
-
+  
   get "search/search"
 
   get 'search' => 'search#search', :as => 'search'
@@ -24,8 +27,8 @@ WebCrawler::Application.routes.draw do
   resources :base_urls
 
   root :to => "search#search"
-
-
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
   
   # first created -> highest priority.
 
