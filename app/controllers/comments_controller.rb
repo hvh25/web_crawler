@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController::Base
+class CommentsController < ApplicationController
   def index
   	@commentable = Job.find(params[:job_id])
     @owner = @commentable.user
