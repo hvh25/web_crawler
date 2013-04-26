@@ -49,7 +49,7 @@ gem "cancan"
 gem 'impressionist'
 gem 'blogit'
 
-gem 'activeadmin'
+gem 'activeadmin', '~> 0.5.0'
 
 gem 'tinymce-rails'
 
