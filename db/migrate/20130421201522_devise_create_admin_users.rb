@@ -49,4 +49,8 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
     # add_index :admin_users, :unlock_token,         :unique => true
     # add_index :admin_users, :authentication_token, :unique => true
   end
+
+  def self.down
+    drop_table :admin_users
+  end
 end
