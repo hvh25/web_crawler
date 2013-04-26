@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <%= render 'layouts/monologue/application/head' %>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand"><strong>Jib.vn</strong></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Jib a Job!", 'http://www.jib.vn' %></li>
+            <li><%= link_to "Post a Job", 'http://www.jib.vn/jobs/new' %></li>
+            <li><%= link_to "Career Blog", 'https://ijvietnam.wordpress.com/category/career-blog/', :target => "_blank" %></li>
+          </ul>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="main-header sixteen columns clearfix">
+      <%= rss_icon %>
+      <h1><a href="<%= root_path %>"><%=Monologue.site_name%></a></h1>
+      <h2><%=Monologue.site_subtitle%></h2>
+      <%= render :partial => "layouts/monologue/application/social_icons" %>
+    </header>
+
+    <div class="content twelve columns">
+      <% flash.each do |name, msg| %>
+        <div class="flash-notice">
+          <%= msg %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+      <%= render 'layouts/monologue/application/sidebar' %>
+  </div>
+  <% if content_for?(:footer) %>
+    <footer>
+      <%= yield :footer %>
+    </footer>
+  <% end %>
+  <%= render 'layouts/monologue/application/disqus' %>
+  <%= render 'layouts/monologue/application/gauge_analytics' %>
+</body>
+</html>

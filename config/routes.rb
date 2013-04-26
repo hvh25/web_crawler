@@ -3,6 +3,8 @@ WebCrawler::Application.routes.draw do
 
   
   
+  resources :posts
+
   #ActiveAdmin.routes(self)
 
   devise_for :users, #path_names: {sign_in: "login", sign_out: "logout"},

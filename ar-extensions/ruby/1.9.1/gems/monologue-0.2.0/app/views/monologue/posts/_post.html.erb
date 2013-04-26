@@ -1,0 +1,14 @@
+<% revision = post.active_revision %>
+<section>
+  <%= render :partial => 'monologue/posts/revision_header', :locals => {:revision=>revision} %>
+
+  <div id="content" data-monologue="content">
+    <%= truncate_html(revision.content, :length => 1000, :omission => '...') %>
+  </div>
+
+  <div id="tags" data-monologue="tags">
+    <%= render post.tags %>
+  </div>
+  <%= link_to t(".readmore"), revision.full_url, :class => "button" %>
+</section>
+

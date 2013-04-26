@@ -1,0 +1,35 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container" data-monologue="nav-bar">
+      <%= link_to "Monologue", admin_path, :class => "brand" %>
+      <ul class="nav pull-left" data-monologue="nav-bar-left">
+
+        <li class="<%= request.fullpath === new_admin_post_path ? "active":"" %>">
+          <%= link_to t(".add_a_monologue"), new_admin_post_path%>
+        </li>
+        <li class="<%= request.fullpath === admin_posts_path || request.fullpath === admin_path ? "active":"" %>">
+          <%= link_to t(".list_monologues"), admin_posts_path %>
+        </li>
+        <li class="<%= request.fullpath === admin_comments_path ? "active":"" %>">
+          <%= link_to t(".comments"), admin_comments_path %>
+        </li>
+      </ul>
+      <ul class="nav pull-right" data-monologue="nav-bar-right">
+        <% if ActionController::Base.perform_caching %>
+          <li class="<%= request.fullpath === admin_cache_path ? "active":"" %>">
+            <%= link_to t(".cache"), admin_cache_path %>
+          </li>
+        <% end %>
+        <li id="fat-menu" class="dropdown">
+          <a href="#" id="settings" data-toggle="dropdown"><%= t(".settings") %> <b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="settings">
+            <li><%= link_to t(".edit_user_info"), edit_admin_user_path(current_user)%></li>
+          </ul>
+        </li>
+        <li><%= link_to t(".log_out"), admin_logout_path %></li>
+
+      </ul>
+
+    </div>
+  </div>
+</div>

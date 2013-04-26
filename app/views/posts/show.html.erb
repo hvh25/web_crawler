@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-fluid">  
+    <div class="row-fluid">  
+        <div class="span2">
+          1
+        </div>
+
+        <div class="span7">
+          <div class='post'>
+            <h3><%= @post.title %></h3>
+            <div id='post-info'>
+              <strong>By <%= @post.author%> at <%= @post.created_at.strftime("%d-%m-%Y") %></strong>
+            </div>
+            <%=raw @post.content %>
+
+	          <div class="fb-like" data-send="true" data-layout="button_count" data-width="700" data-show-faces="true" data-font="lucida grande"></div>
+	                  <em style ="color:#3B5998">to your friends and/or facebook pages & groups</em>
+	          <div class="fb-comments" data-width="650" data-num-posts="10">
+	          </div>
+          </div>
+        </div>
+
+          <br />
+
+    </div>
+</div>
+
+          
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

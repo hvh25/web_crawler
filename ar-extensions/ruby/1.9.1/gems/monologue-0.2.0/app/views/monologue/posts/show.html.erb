@@ -1,0 +1,25 @@
+<% content_for :title do %>
+  <%= @revision.title %>
+<% end %>
+
+<% content_for :meta_description do %>
+  <%= truncate(strip_tags(@revision.content), :length => 155) %>
+<% end %>
+
+<article>
+  <%= render :partial => 'monologue/posts/revision_header', :locals => {:revision=>@revision}%>
+  <div id="content" data-monologue="content">
+    <%= raw @revision.content %>
+  </div>
+
+	<div id="tags" data-monologue="tags">
+    <%= render @revision.post.tags %>
+  </div>
+
+  <%= render "social_sharing" %>
+
+  <div id="disqus_thread"></div>
+  <%= render 'layouts/monologue/application/disqus_embed' %>
+  <noscript>Please enable JavaScript to view the comments.</noscript>
+</article>
+

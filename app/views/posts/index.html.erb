@@ -1,0 +1,31 @@
+<div class="container-fluid">  
+    <div class="row-fluid">  
+        <div class="span2">
+          1
+        </div>
+
+        <div class="span7">
+
+          <% @posts.reverse.each do |post| %>
+
+            <div class='post'>
+              <h2><%= link_to post.title, post %></h2>
+              <div id='post-info'>
+                <strong>By <%= post.author%> at <%= post.created_at.strftime("%d-%m-%Y") %></strong>
+              </div><br>
+              <%=raw post.content %>
+            </div>
+            <br>
+              
+          <% end %>
+
+        </div>
+
+          <br />
+
+
+
+          <%= link_to 'New Post', new_post_path %>
+
+    </div>
+</div>
