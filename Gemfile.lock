@@ -253,7 +253,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  activeadmin (~> 0.5.0)
+  activeadmin
   blogit
   cancan
   coffee-rails (~> 3.2.1)
