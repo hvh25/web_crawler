@@ -7,7 +7,7 @@ class JobsController < ApplicationController
   def index
    # @jobs = Job.all
 
-   @search = Job.search do
+   @search = Sunspot.search(Job) do
       keywords params[:query]
       paginate(:per_page => 20, :page => params[:page])
       facet(:jobtype, :location)
