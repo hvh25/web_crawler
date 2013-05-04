@@ -10,31 +10,33 @@
     </div>
   <% end %>
 
-<% if current_user == nil %>
-  <% @jobapp.build_user(jobapp_ids: [@jobapp.id]) %>
-  <%= f.fields_for :user do |builder| %>
-    <div class="build-user">
-      <h3>Create an account or <%= link_to "Login", new_user_session_path %></h3><br><br>
+  <% if current_user == nil %>
+    <% @jobapp.build_user(jobapp_ids: [@jobapp.id]) %>
+    <%= f.fields_for :user do |builder| %>
+      <div class="build-user">
+        <h3>Create an account or <%= link_to "Login", new_user_session_path %></h3><br><br>
 
-      <%= builder.input :lastname, :required => true,:placeholder => "last & middle name" %> 
-      <%= builder.input :firstname, :required => true %>
-      <%= builder.input :email, :required => true, :autofocus => true, :placeholder => "get updates for your application" %>
-                        
-      <% if builder.object.password_required? %>
-      <%= builder.input :password, :required => true, :placeholder => "at least 8 characters" %>
-      <%= builder.input :password_confirmation, :required => true %>
-      <% end %>
-    </div>
+        <%= builder.input :lastname, :required => true,:placeholder => "last & middle name" %> 
+        <%= builder.input :firstname, :required => true %>
+        <%= builder.input :email, :required => true, :autofocus => true, :placeholder => "get updates for your application" %>
+                          
+        <% if builder.object.password_required? %>
+        <%= builder.input :password, :required => true, :placeholder => "at least 8 characters" %>
+        <%= builder.input :password_confirmation, :required => true %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    
+    <h3>Your Application</h3><br><br>
+
+    Name to be displayed to employer: <strong><%= current_user.lastname%> <%= current_user.firstname %></strong>
+    <%= link_to "Edit", edit_user_registration_path%><br><br>
+
+    Email address to be contacted by employer: <strong><%= current_user.email%></strong>
+    <%= link_to "Edit", edit_user_registration_path%><br><br>
+
   <% end %>
-<% end %>
-  
-  <h3>Your Application</h3><br><br>
-
-  Name to be displayed to employer: <strong><%= current_user.lastname%> <%= current_user.firstname %></strong>
-  <%= link_to "Edit", edit_user_registration_path%><br><br>
-
-  Email address to be contacted by employer: <strong><%= current_user.email%></strong>
-  <%= link_to "Edit", edit_user_registration_path%><br><br>
 
   <%= f.input :education,label:"Message to employer", :input_html => {:style => 'width: 450px', :rows => 10} %>
   <%= f.input :other,label: "Phone number", :input_html => {:style => 'width: 450px', :rows => 1} %>

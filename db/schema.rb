@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425110125) do
+ActiveRecord::Schema.define(:version => 20130428004004) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -176,6 +176,19 @@ ActiveRecord::Schema.define(:version => 20130425110125) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
   end
+
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.integer  "messageable_id"
+    t.string   "messageable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "ancestry"
+  end
+
+  add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
+  add_index "messages", ["messageable_id", "messageable_type"], :name => "index_messages_on_messageable_id_and_messageable_type"
 
   create_table "monologue_posts", :force => true do |t|
     t.integer  "posts_revision_id"

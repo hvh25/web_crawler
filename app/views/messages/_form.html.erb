@@ -1,0 +1,22 @@
+<%= simple_form_for [@messageable, @message] do |f| %>
+
+	<%= f.hidden_field :parent_id %> <!--for nested messages -->	
+
+	<%if @message.errors.any? %>
+		<div class='error_messages'>
+			<h2>Please correct the following errors.</h2>
+			<ul>
+			<% @message.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="message_field">
+		<%= f.input :content, :label => false, :input_html => {:style => 'width: 380px', rows: 1} %>
+		<%= f.button :submit, "Submit",:class => 'btn-primary', :style => 'margin-left:328px' %>
+	</div>
+<% end %>
+
+	

@@ -1,0 +1,16 @@
+<div class="message">
+	<% if message.user == message.messageable.user %>
+		<div id ='answer'><strong>Employer</strong> <%= message.content %>
+		<br><%= link_to 'Reply', new_job_message_path(:job_id => @messageable ,:parent_id => message)%></div>
+	<% else %>
+		<div id ='question'>
+			<% if message.user == nil %>
+				<strong>Guest</strong> <%= message.content %>
+			<% else %>
+				<strong><%= message.user.firstname %></strong> <%= message.content %>
+			<% end %>
+			<br><%= link_to 'Reply', new_job_message_path(:job_id => @messageable ,:parent_id => message)%>		
+		</div>
+	<% end %>
+
+</div>

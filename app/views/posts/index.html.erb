@@ -1,7 +1,20 @@
 <div class="container-fluid">  
     <div class="row-fluid">  
         <div class="span2">
-          1
+            <div id="facets">
+                <h3>Article Type</h3>
+                <ul>
+                  <% for row in @search.facet(:posttype).rows %>
+                    <li>
+                      <% if params[:posttype].blank? %>
+                        <%= link_to row.value, params.merge(:posttype => row.value) %> (<%= row.count %>)
+                      <% else %>
+                        <strong><%= row.value %></strong> (<%= link_to "remove", params.merge(:posttype => nil) %>)
+                      <% end %>
+                    </li>
+                  <% end %><!--end of for row in @search-->
+                </ul>
+            </div>
         </div>
 
         <div class="span7">

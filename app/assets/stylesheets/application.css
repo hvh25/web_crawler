@@ -30,3 +30,11 @@
   float: none;
   margin: 0;
 }
+
+.nested_messages {
+	margin-left: 30px;
+}
+
+.nested_messages .nested_messages {
+	margin-left: 0px;
+}

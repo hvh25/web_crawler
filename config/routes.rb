@@ -21,7 +21,7 @@ WebCrawler::Application.routes.draw do
   end
 
   resources :jobs do
-    resources :comments
+    resources :messages
   end
 
   resources :jobapps, :only => [:index]
