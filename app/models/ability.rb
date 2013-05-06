@@ -6,6 +6,8 @@ class Ability
     can :show, Job 
     can :create, Job
     can :create, Jobapp
+    can :show, Post
+    can :index, Post
     if user != nil
 	    if user.role_ids == [1]
 	      can :manage, :all

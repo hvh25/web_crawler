@@ -1,6 +1,7 @@
 <div class="container-fluid">  
     <div class="row-fluid">  
         <div class="span2">
+            <br><br><br>
             <div id="facets">
                 <h3>Article Type</h3>
                 <ul>
@@ -37,8 +38,9 @@
           <br />
 
 
-
+          <% if can? :create, @job %>
           <%= link_to 'New Post', new_post_path %>
+          <% end %>
 
     </div>
 </div>
