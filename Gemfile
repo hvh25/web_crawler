@@ -54,6 +54,7 @@ gem 'activeadmin'
 gem 'tinymce-rails'
 
 gem 'ancestry'
+gem 'redcarpet'
 
 
 # To use ActiveModel has_secure_password

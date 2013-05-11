@@ -21,7 +21,7 @@
           <% end %>
         </div>
         
-        <div id='detail' class="span8" style = "margin-left:200px;">
+        <div id='detail' class="span6" style = "margin-left:200px;">
           <%- model_class = @job.class -%>
               <h2><%= @job.title %> </h2>
               <h3><%= @job.jobtype %> - <%= @job.location %></h3>
@@ -38,7 +38,7 @@
 
               <div id='compinfo'>
               <h3><%= @job.company %></h3>
-              <%= @job.compinfo %>
+              <%= h(@job.compinfo).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %>
               </div>
 
               <div id='description'><h3><%= model_class.human_attribute_name(:description) %>:</h3><br>

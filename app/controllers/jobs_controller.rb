@@ -10,7 +10,7 @@ class JobsController < ApplicationController
    @search = Sunspot.search(Job) do
       keywords params[:query]
       paginate(:per_page => 20, :page => params[:page])
-      facet(:jobtype, :location)
+      facet(:jobtype, :location, :comptype)
       with(:jobtype, params[:jobtype]) if params[:jobtype].present?
       with(:location, params[:location]) if params[:location].present?
       with(:comptype, params[:comptype]) if params[:comptype].present?

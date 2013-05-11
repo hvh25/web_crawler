@@ -273,6 +273,7 @@ DEPENDENCIES
   paperclip!
   pg
   rails (= 3.2.8)
+  redcarpet
   sass-rails (~> 3.2.3)
   simple_form
   sqlite3

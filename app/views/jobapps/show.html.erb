@@ -6,7 +6,7 @@
 	<%=link_to "Download applicant's resume", @jobapp.resume.url(:original, false) %><br><br>
 	<p>
 	  <strong>Message from applicant:</strong><br>
-	  <%= @jobapp.education %>
+	  <%= h(@jobapp.education).gsub(/\n/, '<br/>').gsub('•','<br/> &bull;').html_safe %>
 	</p>
 	<p>
 	  <strong>Phone number:</strong><br>
