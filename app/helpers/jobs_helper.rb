@@ -139,7 +139,6 @@ end
       Job.all.each do |job| 
         job.destroy if job.url == old_url
         if (job.availability == nil || job.availability == '') then job.availability = (Date.today + 100.days) end
-        end
       end
     end 
       
