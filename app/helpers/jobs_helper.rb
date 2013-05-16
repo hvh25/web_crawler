@@ -76,7 +76,7 @@ end
                   #    base_url.jobs << job
             end #of if subpage
 
-            if job.availability == nil || job.availability == 'nil' then job.availability = (Date.today + 100.days) end
+            
 
             rescue Exception => e
               case e.message
@@ -138,8 +138,10 @@ end
     (old_list - new_list).each do |old_url|
       Job.all.each do |job| 
         job.destroy if job.url == old_url
+        if (job.availability == nil || job.availability == '') then job.availability = (Date.today + 100.days) end
         end
-      end 
+      end
+    end 
       
 
 
