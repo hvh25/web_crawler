@@ -18,7 +18,7 @@ class Job < ActiveRecord::Base
   end
 
   validates_presence_of :company, :description, :title, :comptype,
-                        :location, :requirement, :jobtype, :availability
+                        :location, :requirement, :jobtype
 	has_many :jobapps
   has_many :messages, as: :messageable
 	belongs_to :base_url

@@ -35,6 +35,8 @@ end
   end
   
 
+
+    
   def self.test_get_links
     old_list = []  #a list of already existing jobs to compare
     new_list = []  #a list of all current links
@@ -68,11 +70,13 @@ end
                        :location => base_url.locationcss == ''? base_url.location0 : extract_location(subpage.css(base_url.locationcss).text+new_link),
                        :description => subpage.css(base_url.descriptioncss).text,
                        :requirement => base_url.requirementcss == ''? base_url.requirement0 : subpage.css(base_url.requirementcss).text,
-                       :availability => (base_url.availabilitycss == nil || base_url.availabilitycss == '') ? (Date.today + 120.days) : subpage.css(base_url.availabilitycss).text,#.scan(/(\d+)(\-)(\d+)(\-)(\d+)/).join(''),
-                       #:deadline => base_url.availabilitycss == ''? base_url.avail0 : subpage.css(base_url.availabilitycss).text,
+                       :availability => (base_url.availabilitycss == '' || subpage.css(base_url.availabilitycss).text == '' || subpage.css(base_url.availabilitycss).text == nil)? 
+                                        (Date.today + 100.days) : subpage.css(base_url.availabilitycss).text,
                        :jobtype => base_url.jobtypecss == ''? base_url.jobtype0 : extract_type(subpage.css(base_url.jobtypecss).text+new_link) )
                   #    base_url.jobs << job
             end #of if subpage
+
+            if job.availability == nil || job.availability == 'nil' then job.availability = (Date.today + 100.days) end
 
             rescue Exception => e
               case e.message
