@@ -34,7 +34,14 @@ end
           end
   end
   
-
+  def self.job_update
+    Job.all.each do |job|
+      if job.availability == nil || job.availability == ''
+        job.availability = (Date.today + 100.days)
+        job.save 
+      end
+    end
+  end  
 
     
   def self.test_get_links
@@ -138,7 +145,6 @@ end
     (old_list - new_list).each do |old_url|
       Job.all.each do |job| 
         job.destroy if job.url == old_url
-        if (job.availability == nil || job.availability == '') then job.availability = (Date.today + 100.days) end
       end
     end 
       
