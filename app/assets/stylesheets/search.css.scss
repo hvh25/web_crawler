@@ -8,9 +8,20 @@
 	width:900px;
 }
 
-.span8 {
+.span6 {
 	border-left: 1px solid #EDEFF4;
 	padding-left: 10px;
+}
+
+.span3 {
+	border-left: 1px dashed #000000;
+	border-right: 1px dashed #000000;
+	border-top: 1px dashed #000000;
+	border-bottom: 1px dashed #000000;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
 }
 .query {
 	width: 250px !important;

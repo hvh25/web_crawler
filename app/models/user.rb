@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :assignments
   has_many :roles, :through => :assignments	
   has_many :comments
+  has_many :searches
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

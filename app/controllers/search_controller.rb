@@ -16,7 +16,8 @@ class SearchController < ApplicationController
       @result = @search.results
       #@new = Job.order("created_at").last(100).sample(5)
       jobatjib = Job.all.select {|job| job.user != nil && job.availability >= Date.today}
-      @new = (jobatjib.sample((jobatjib.size/3).round) + Job.order("created_at").last(200).sample(5 - (jobatjib.size/3).round)).uniq
+      jobcrawl = Job.all.select {|job| job.user == nil && job.availability >= Date.today}
+      @new = jobatjib.sample(3) + jobcrawl.order("created_at").last(200).sample(2)
 #	end
  
     respond_to do |format|

@@ -5,6 +5,8 @@ WebCrawler::Application.routes.draw do
   
   resources :posts, :path => "/blog"
 
+  resources :searches
+
   #ActiveAdmin.routes(self)
 
   devise_for :users, #path_names: {sign_in: "login", sign_out: "logout"},
@@ -12,7 +14,7 @@ WebCrawler::Application.routes.draw do
 
   devise_for :users do get'/users/sign_out' => 'devise/sessions#destroy' end
   
-  get "search/search"
+  #get "search/search"
 
   get 'search' => 'search#search', :as => 'search'
 
