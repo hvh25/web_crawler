@@ -1,6 +1,8 @@
-<h1>Search Results</h1>
+Dear,<br><br>
 
-    <%= @search.keywords %>
+Below are new jobs for your search @Jib.vn:
+
+<%= @jobs %>
     <% @jobs.each do |job| %>
     <%= link_to job.title, job %>
     <% end %>

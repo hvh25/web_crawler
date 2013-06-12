@@ -1,4 +1,13 @@
 class SearchesController < ApplicationController
+	def index
+	    @searches = Search.all
+
+	    respond_to do |format|
+	      format.html # index.html.erb
+	      format.json { render json: @base_urls }
+    	end
+  	end
+
 	def new
 	  @search = Search.new
 	  @search.user = current_user
@@ -17,4 +26,19 @@ class SearchesController < ApplicationController
 	        fulltext @search.keywords end
       	@jobs = @jib.results
 	end
+
+	def deliver
+		Search.all.each do |search|
+				@jib = Sunspot.search(Job) do
+		        	fulltext search.keywords end
+	      			@jobs = @jib.results
+				@user = search.user
+				@email = @user.email
+				@name = @user.first_name
+				UserMailer.job_weekly(@email,@jobs,@user,@name).delay.deliver 
+		end
+
+      redirect_to searches_path, notice: "Successfully deliver job results."
+    end
+				
 end

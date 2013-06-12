@@ -14,4 +14,14 @@ class UserMailer < ActionMailer::Base
 
     mail to: owner.email, subject: "New application for "+job.title+" at Jib.vn"
   end
+
+  def job_weekly(email,jobs,user,keywords)
+    @email=email
+    @jobs=jobs
+    @user=user
+    @keywords = keywords
+
+    mail to: email, subject: "New jobs for your search @Jib.vn"
+  end
+
 end

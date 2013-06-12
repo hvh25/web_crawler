@@ -1,0 +1,6 @@
+<% @searches.each do |search| %>
+<%= search.keywords %> - <%= search.user.firstname %> - <%= search.user.email %>
+<%= link_to deliver_search_path(search) %>
+<br>
+<% end %>
+

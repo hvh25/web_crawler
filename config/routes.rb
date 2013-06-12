@@ -5,7 +5,9 @@ WebCrawler::Application.routes.draw do
   
   resources :posts, :path => "/blog"
 
-  resources :searches
+  resources :searches do
+    member { post :deliver}
+  end
 
   #ActiveAdmin.routes(self)
 

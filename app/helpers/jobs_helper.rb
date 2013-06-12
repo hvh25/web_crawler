@@ -144,7 +144,7 @@ end
     puts old_list - new_list
     (old_list - new_list).each do |old_url|
       Job.all.each do |job| 
-        job.destroy if job.url == old_url
+        job.destroy if (job.user.nil? && job.url == old_url)
       end
     end 
       
