@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '4.0.0'
 gem 'gelf'
 
 # Bundle edge Rails instead:
@@ -31,14 +31,14 @@ gem 'friendly_id'
 # in production environments by default.
 	
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
 
   gem 'twitter-bootstrap-rails', '~> 2.0.6'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.3.0'
   gem 'less'
   gem 'less-rails'
 end
@@ -49,13 +49,16 @@ gem "cancan"
 gem 'impressionist'
 gem 'blogit'
 
-gem 'activeadmin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'tinymce-rails'
 
 gem 'ancestry'
 gem 'redcarpet'
 
+#rails 4
+gem 'railties', '~> 4.0.0'
+gem 'activerecord', '~> 4.0.0'
 
 
 # To use ActiveModel has_secure_password
